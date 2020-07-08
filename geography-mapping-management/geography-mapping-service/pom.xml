@@ -10,6 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>geography-mapping-service</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.gpm.springcloud</groupId>
+            <artifactId>geography-mapping-mapper</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gpm.springcloud</groupId>
+            <artifactId>geography-mapping-config</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
