@@ -1,7 +1,10 @@
 package com.aaa.gpm.base;
 
+import java.util.List;
+
 import static com.aaa.gpm.status.LoginStatus.LOGIN_FAILED;
 import static com.aaa.gpm.status.LoginStatus.LOGIN_SUCCESS;
+import static com.aaa.gpm.status.OperationStatus.*;
 
 /**
  * @Author: zj
@@ -94,6 +97,207 @@ public class BaseController {
         resultData.setDetail(detail);
         return resultData;
     }
+
+    /**
+     * 操作成功，返回系统消息
+     * @return
+     */
+    protected ResultData operationSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(SUCCESS.getCode());
+        resultData.setMsg(SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 操作失败，返回系统消息
+     * @return
+     */
+    protected ResultData operationFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(FAILED.getCode());
+        resultData.setMsg(FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 操作失败，返回自定义消息
+     * @return
+     */
+    protected ResultData operationFAILED(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(FAILED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 查询成功，返回系统消息，返回一条数据
+     * @return
+     */
+    protected ResultData operationSuccess(Object data){
+        ResultData resultData = new ResultData();
+        resultData.setCode(SUCCESS.getCode());
+        resultData.setMsg(SUCCESS.getMsg());
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
+     * 查询成功，返回自定义消息，返回一条数据
+     * @return
+     */
+    protected ResultData operationSuccess(Object data,String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(SUCCESS.getCode());
+        resultData.setMsg(msg);
+        resultData.setData(data);
+        return resultData;
+    }
+
+    /**
+     * 新增数据成功，返回系统消息
+     * @return
+     */
+    protected ResultData addSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_SUCCESS.getCode());
+        resultData.setMsg(INSERT_OPERATION_SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 新增数据成功，返回自定义消息
+     * @return
+     */
+    protected ResultData addSuccess(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_SUCCESS.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 新增数据失败，返回系统消息
+     * @return
+     */
+    protected ResultData addFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_FAILED.getCode());
+        resultData.setMsg(INSERT_OPERATION_FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 新增数据失败，返回自定义消息
+     * @return
+     */
+    protected ResultData addFailed(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_FAILED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 新增数据已存在，返回系统消息
+     * @return
+     */
+    protected ResultData addExist(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_EXIST.getCode());
+        resultData.setMsg(INSERT_OPERATION_EXIST.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 新增数据已存在，返回自定义消息
+     * @return
+     */
+    protected ResultData addExist(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(INSERT_OPERATION_EXIST.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+
+    /**
+     * 删除成功，返回系统消息
+     * @return
+     */
+    protected ResultData deleteSuccess(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_SUCCESS.getCode());
+        resultData.setMsg(DELETE_OPERATION_SUCCESS.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 删除成功，返回自定义消息
+     * @return
+     */
+    protected ResultData deleteSuccess(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_SUCCESS.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 删除失败，返回系统消息
+     * @return
+     */
+    protected ResultData deleteFailed(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_FAILED.getCode());
+        resultData.setMsg(DELETE_OPERATION_FAILED.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 删除失败，返回自定义消息
+     * @return
+     */
+    protected ResultData deleteFailed(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_FAILED.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+    /**
+     * 删除数据不存在，返回系统消息
+     * @return
+     */
+    protected ResultData deleteExist(){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_EXIST.getCode());
+        resultData.setMsg(DELETE_OPERATION_EXIST.getMsg());
+        return resultData;
+    }
+
+    /**
+     * 删除数据不存在，返回自定义消息
+     * @return
+     */
+    protected ResultData deleteExist(String msg){
+        ResultData resultData = new ResultData();
+        resultData.setCode(DELETE_OPERATION_EXIST.getCode());
+        resultData.setMsg(msg);
+        return resultData;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     // TODO 未完善
 
