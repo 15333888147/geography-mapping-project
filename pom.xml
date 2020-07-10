@@ -51,11 +51,11 @@
             </dependency>
 
             <!-- 支持thymeleaf不严谨标签jar包 -->
-            <!--<dependency>
+            <dependency>
                 <groupId>net.sourceforge.nekohtml</groupId>
                 <artifactId>nekohtml</artifactId>
                 <version>1.9.22</version>
-            </dependency>-->
+            </dependency>
             <!--
                 redis的jar包以及jedis的jar包
                 TODO 后期版本升级需要更改jedis版本

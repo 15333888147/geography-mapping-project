@@ -1,9 +1,11 @@
 package com.aaa.gpm.base;
 
+import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import static com.aaa.gpm.status.OperationStatus.SUCCESS;
@@ -81,9 +83,9 @@ public abstract class CommonController<T> extends BaseController {
         T instance = getBaseService().newInstance(map);
         Integer deleteResult = getBaseService().delete(instance);
         if (deleteResult > 0){
-            return super.operationSuccess();
+            return super.deleteSuccess();
         }
-        return super.operationFailed();
+        return super.deleteFailed();
     }
 
     /**
@@ -94,9 +96,9 @@ public abstract class CommonController<T> extends BaseController {
     public ResultData batchDelete(@RequestParam("ids[]") Integer[] ids){
         Integer deleteResult = getBaseService().deleteByIds(Arrays.asList(ids));
         if (deleteResult > 0){
-            return super.operationSuccess();
+            return super.deleteSuccess();
         }
-        return super.operationFailed();
+        return super.deleteFailed();
     }
 
     /**
@@ -108,9 +110,9 @@ public abstract class CommonController<T> extends BaseController {
         T instance = getBaseService().newInstance(map);
         Integer updateResult = getBaseService().update(instance);
         if (updateResult > 0 ){
-            return super.operationSuccess();
+            return super.updateSuccess();
         }
-        return super.operationFailed();
+        return super.updateFailed();
     }
 
     /**
@@ -123,9 +125,9 @@ public abstract class CommonController<T> extends BaseController {
        T instance = getBaseService().newInstance(map);
         Integer updateResult = getBaseService().batchUpdate(instance, ids);
         if (updateResult > 0 ){
-            return super.operationSuccess();
+            return super.updateSuccess();
         }
-        return super.operationFailed();
+        return super.updateFailed();
     }
 
     /**
@@ -142,6 +144,41 @@ public abstract class CommonController<T> extends BaseController {
         }
         return super.operationFailed();
     }
+
+    /**
+     * 查询数据列表
+     * @param map
+     * @return
+     */
+    public ResultData selectList(@RequestBody Map map){
+        ResultData resultData = new ResultData();
+        T instance = getBaseService().newInstance(map);
+        List<T> selectList = getBaseService().selectList(instance);
+        if (null != selectList){
+            return super.operationSuccess(selectList,"查询数据列表成功!");
+        }
+        return super.operationFailed("查询数据列表失败!");
+    }
+
+    /**
+     * 不带条件分页查询
+     * @param map
+     * @return
+     */
+    public ResultData selectListByPage(@RequestBody Map map){
+        Integer pageNo = (Integer) map.get("pageNo");
+        Integer pageSize = (Integer) map.get("pageSize");
+        Object t = map.get("t");
+        PageInfo<T> tPageInfo = getBaseService().selectListByPage((T) t, pageNo, pageSize);
+        if (null != tPageInfo){
+            return super.operationSuccess(tPageInfo,"分页查询数据列表成功!");
+        }
+        return super.operationFailed("分页查询数据列表失败!");
+    }
+
+
+
+
 
 
 }
