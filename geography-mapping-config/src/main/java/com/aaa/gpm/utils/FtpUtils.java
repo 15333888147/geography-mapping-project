@@ -1,4 +1,4 @@
-package gpm.utils;
+package com.aaa.gpm.utils;
 
 import com.aaa.gpm.utils.StringUtils;
 import org.apache.commons.net.ftp.FTP;

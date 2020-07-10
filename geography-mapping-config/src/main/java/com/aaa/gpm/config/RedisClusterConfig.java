@@ -1,6 +1,6 @@
-package gpm.config;
+package com.aaa.gpm.config;
 
-import gpm.properties.RedisClusterProperties;
+import com.aaa.gpm.properties.RedisClusterProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

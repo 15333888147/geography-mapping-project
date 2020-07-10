@@ -1,4 +1,4 @@
-package gpm.properties;
+package com.aaa.gpm.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
