@@ -17,6 +17,7 @@ import java.util.Map;
 /**
  * @Author: zj
  * @Date: 2020/7/8
+ * 用户管理
  *
  */
 @Service
@@ -31,11 +32,10 @@ public class UserService extends BaseService<TUser> {
      * @return
      */
     public PageInfo selectAlls(HashMap hashMap){
-        PageHelper.startPage(Integer.valueOf(hashMap.get("pageNo")+""),Integer.valueOf(hashMap.get("pageSize")+""));
-        List<TUser> tUsers = userMappper.selectAlls(hashMap);
-        PageInfo pageInfo = new PageInfo(tUsers);
-        if (null != pageInfo && !"".equals(pageInfo)){
-            return pageInfo;
+        PageHelper.startPage(Integer.parseInt(hashMap.get("pageNo")+""),Integer.parseInt(hashMap.get("pageSize")+""));
+        PageInfo page = new PageInfo(userMappper.selectAlls(hashMap));
+        if (null != page && !"".equals(page)){
+            return page;
         }
         return null;
     }

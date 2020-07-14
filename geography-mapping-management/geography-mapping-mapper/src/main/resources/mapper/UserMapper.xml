@@ -18,16 +18,16 @@
         <result column="type" property="type" jdbcType="CHAR" />
         <result column="token" property="token" jdbcType="VARCHAR" />
     </resultMap>
-    <select id="selectAllUser" resultType="HashMap" parameterType="HashMap">
+    <select id="selectAlls" resultType="HashMap" parameterType="HashMap">
         select u.*,d.dept_name deptName from t_user u
         left join t_dept d
         on u.dept_id=d.dept_id
         <where>
             1 = 1
-            <if test="username != ''">
+            <if test=" username != null and username != '' ">
                 and u.username like '%${username}%'
             </if>
-            <if test="deptId != ''">
+            <if test=" deptId != null and deptId != '' ">
                 and d.dept_id like '%${deptId}%'
             </if>
         </where>

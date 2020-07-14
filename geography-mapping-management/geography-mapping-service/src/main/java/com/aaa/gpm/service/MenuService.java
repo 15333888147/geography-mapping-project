@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: zj
  * @Date: 2020/7/13
+ * 菜单管理
  */
 @Service
 public class MenuService extends BaseService<TMenu>{
@@ -62,4 +64,18 @@ public class MenuService extends BaseService<TMenu>{
         return allMenu;
     }
 
+    /**
+     * 删除所有的一级和二级菜单
+     * @param menuId
+     * @return
+     */
+    public Integer delMenu(Long menuId){
+        //删除当前menuId菜单
+        int res = menuMapper.deleteByPrimaryKey(menuId);
+        //根据menuId删除其对应二级菜单，如果有就删除，如果没有就删除失败
+        TMenu tMenu = new TMenu();
+        tMenu.setParentId(menuId);
+        menuMapper.delete(tMenu);
+        return res;
+    }
 }

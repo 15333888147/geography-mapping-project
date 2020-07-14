@@ -7,13 +7,16 @@ import com.aaa.gpm.model.TDept;
 import com.aaa.gpm.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: zj
  * @Date: 2020/7/14
+ * 部门管理
  */
 @RestController
 public class DeptController extends CommonController<TDept> {
@@ -38,6 +41,36 @@ public class DeptController extends CommonController<TDept> {
         } else {
             return super.operationFailed("查询失败");
         }
+    }
+
+    /**
+     * 添加部门信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/addDept")
+    public ResultData addDept(Map map){
+        return super.add(map);
+    }
+
+    /**
+     * 删除部门信息
+     * @param map
+     * @return
+     */
+    @PostMapping("/deleteDept")
+    public ResultData deleteDept(Map map){
+        return super.delete(map);
+    }
+
+    /**
+     * 修改部门信息[
+     * @param map
+     * @return
+     */
+    @PostMapping("/updateDept")
+    public ResultData updateDept(Map map){
+        return super.update(map);
     }
 
 
