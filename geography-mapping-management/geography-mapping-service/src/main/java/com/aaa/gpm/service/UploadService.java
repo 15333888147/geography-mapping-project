@@ -1,8 +1,8 @@
 package com.aaa.gpm.service;
 
-import com.aaa.gpm.properties.FtpProperties;
+//import com.aaa.gpm.properties.FtpProperties;
 import com.aaa.gpm.utils.FileNameUtils;
-import com.aaa.gpm.utils.FtpUtils;
+//import com.aaa.gpm.utils.FtpUtils;
 import org.apache.commons.httpclient.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,14 +21,14 @@ import static com.aaa.gpm.staticproperties.TimeForatProperties.DATE_FORMAT;
 @Service
 public class UploadService {
 
-    @Autowired
+    /*@Autowired
     private FtpProperties ftpProperties;
 
-    /**
+    *//**
      * 文件上传
      * @param file
      * @return
-     */
+     *//*
     public Boolean upload(MultipartFile file) {
         // 1.获取文件的远程名称(为了获取后缀名)
         String oleFileName = file.getOriginalFilename();
@@ -47,6 +47,6 @@ public class UploadService {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
 }

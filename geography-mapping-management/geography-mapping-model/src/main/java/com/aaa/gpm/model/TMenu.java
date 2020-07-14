@@ -1,8 +1,24 @@
 package com.aaa.gpm.model;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Accessors(chain = true)
+@Table(name = "t_menu")
 public class TMenu {
+    @Id
+    @Column(name = "MENU_ID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long menuId;
 
     private Long parentId;
@@ -25,91 +41,8 @@ public class TMenu {
 
     private Date modifyTime;
 
-    public Long getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName == null ? null : menuName.trim();
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path == null ? null : path.trim();
-    }
-
-    public String getComponent() {
-        return component;
-    }
-
-    public void setComponent(String component) {
-        this.component = component == null ? null : component.trim();
-    }
-
-    public String getPerms() {
-        return perms;
-    }
-
-    public void setPerms(String perms) {
-        this.perms = perms == null ? null : perms.trim();
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon == null ? null : icon.trim();
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type == null ? null : type.trim();
-    }
-
-    public Double getOrderNum() {
-        return orderNum;
-    }
-
-    public void setOrderNum(Double orderNum) {
-        this.orderNum = orderNum;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
+    /**
+     * 子菜单
+     */
+    private List<TMenu> subMenu;
 }

@@ -1,5 +1,7 @@
 package com.aaa.gpm.base;
 
+import com.aaa.gpm.mapper.UserMappper;
+import com.aaa.gpm.model.TUser;
 import com.aaa.gpm.utils.Map2BeanUtils;
 import com.aaa.gpm.utils.SpringContextUtils;
 import com.github.pagehelper.PageHelper;
@@ -12,6 +14,7 @@ import tk.mybatis.mapper.util.Sqls;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -237,4 +240,7 @@ public abstract class BaseService<T> {
     public ApplicationContext getApplicationContext(){
         return SpringContextUtils.getApplicationContext();
     }
+
+
+
 }

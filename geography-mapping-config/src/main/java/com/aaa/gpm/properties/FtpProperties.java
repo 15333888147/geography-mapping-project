@@ -10,9 +10,9 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2020/7/10 15:46
  * @Description: TODO
  */
-@Component
-@PropertySource("classpath:properties/ftp.properties")
-@ConfigurationProperties(prefix = "spring.ftp")
+//@Component
+//@PropertySource("classpath:properties/ftp.properties")
+//@ConfigurationProperties(prefix = "spring.ftp")
 @Data
 public class FtpProperties {
     private String host;

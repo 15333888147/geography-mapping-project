@@ -4,8 +4,8 @@ import com.aaa.gpm.properties.RedisClusterProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import redis.clients.jedis.HostAndPort;
-import redis.clients.jedis.JedisCluster;
+//import redis.clients.jedis.HostAndPort;
+//import redis.clients.jedis.JedisCluster;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -15,9 +15,9 @@ import java.util.Set;
  * @DateTime: 2020/7/10 15:50
  * @Description: TODO
  */
-@Configuration
+//@Configuration
 public class RedisClusterConfig {
-    @Autowired
+    /*@Autowired
     private RedisClusterProperties redisClusterProperties;
 
     @Bean
@@ -31,5 +31,5 @@ public class RedisClusterConfig {
             hostAndPortSet.add(hostAndPort);
         }
         return new JedisCluster(hostAndPortSet,redisClusterProperties.getCommandTimeout(),redisClusterProperties.getMaxAttempts());
-    }
+    }*/
 }

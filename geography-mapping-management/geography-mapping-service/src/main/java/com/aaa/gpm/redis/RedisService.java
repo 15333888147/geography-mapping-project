@@ -2,12 +2,12 @@ package com.aaa.gpm.redis;
 
 import com.aaa.gpm.utils.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
+//import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
+//import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
-import redis.clients.jedis.JedisCluster;
+//import redis.clients.jedis.JedisCluster;
 
 import javax.annotation.PostConstruct;
 
@@ -24,11 +24,11 @@ import static com.aaa.gpm.staticproperties.RedisProperties.*;
 @Service
 public class RedisService<T> {
 
-    private RedisSerializer keySerializer = null;
+    /*private RedisSerializer keySerializer = null;
 
-    /**
+    *//**
      * 初始化redis的key序列化器
-     */
+     *//*
     @PostConstruct
     public void initRedisSerializer(){
         if (this.keySerializer == null){
@@ -39,7 +39,7 @@ public class RedisService<T> {
     @Autowired
     private JedisCluster jedisCluster;
 
-    /**
+    *//**
      * 向redis中存入数据
      * @param key
      * @param value
@@ -51,7 +51,7 @@ public class RedisService<T> {
      *              px: 失效时间的单位是毫秒
      * @param seconds  失效时间
      * @return
-     */
+     *//*
     public String set(String key, T value, String nxxx, String expx, Integer seconds) {
         if (null != seconds && 0 < seconds && (EX.equals(expx) || PX.equals(expx)) && (XX.equals(nxxx) || NX.equals(nxxx))){
             //说明在存入数据的时候我就必须要上失效时间了
@@ -67,52 +67,52 @@ public class RedisService<T> {
         return NO;
     }
 
-    /**
+    *//**
      * 从redis中查询数据（单个数据）
      * @param key
      * @return
-     */
+     *//*
     public T getOne(String key){
         return (T) JSONUtils.toObject(jedisCluster.get(key),Object.class);
     }
 
-    /**
+    *//**
      * 从redis中查询数据（value值是字符串）
      * @param key
      * @return
-     */
+     *//*
     public String getString(String key){
         return jedisCluster.get(key);
     }
 
-    /**
+    *//**
      * 从redis中查询数据(集合数据)
      * @param key
      * @return
-     */
+     *//*
     public List<T> getList(String key) {
         return (List<T>) JSONUtils.toList(jedisCluster.get(key), Object.class);
     }
 
-    /**
+    *//**
      * 思路:
      *  目前来说架构遇到的问题:
      *      封装redis的时候发现无法实现通用，因为JedisCluster只能接收String类型key值
      *      并不符合架构标准，最终可以把Object对象转换为字节数组来进行处理这个问题
-     */
+     *//*
     public Long delOne(Object key){
         return jedisCluster.del(rawKey(key));
     }
 
     public Long delMany(Collection<T> keys) {
-        /**
+        *//**
          *  这种循环的形式看似没有毛病，但是有问题
          *  假设有10个key需要删除
          *      其中九个都删了，但是只有一个没有删，如果这一个不是在最后
          *      那么结果返回一定大于0
          *      不能使用循环操作
          *
-         */
+         *//*
         if(CollectionUtils.isEmpty(keys)) {
             return 0L;
         } else {
@@ -121,13 +121,13 @@ public class RedisService<T> {
         }
     }
 
-    /**
+    *//**
      * 把Object 对象转换为字节数组
      * @param key
      * @return
-     */
+     *//*
     private byte[] rawKey(Object key){
-        /**
+        *//**
          * 判断
          * 断言是用来判断的：
          *  如果key有值则会执行下面代码
@@ -146,7 +146,7 @@ public class RedisService<T> {
          *                 return keySerializer.serialize(key);
          *             }
          *         }
-         */
+         *//*
 
         Assert.notNull(key, "non null key required");
         return this.keySerializer == null && key instanceof byte[] ? (byte[]) key : this.keySerializer.serialize(key);
@@ -161,5 +161,5 @@ public class RedisService<T> {
         }
         return rks;
     }
-
+*/
 }

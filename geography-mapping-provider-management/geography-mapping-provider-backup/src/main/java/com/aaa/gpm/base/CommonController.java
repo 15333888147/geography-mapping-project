@@ -3,6 +3,7 @@ package com.aaa.gpm.base;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import tk.mybatis.mapper.util.Sqls;
 
 import java.util.Arrays;
 import java.util.List;
@@ -69,9 +70,9 @@ public abstract class CommonController<T> extends BaseController {
         Integer addResult = getBaseService().add(instance);
         if (addResult > 0){
             afterAdd(map);
-            return super.operationSuccess();
+            return super.addSuccess();
         }
-        return super.operationFailed();
+        return super.addFailed();
     }
 
     /**
@@ -175,8 +176,6 @@ public abstract class CommonController<T> extends BaseController {
         }
         return super.operationFailed("分页查询数据列表失败!");
     }
-
-
 
 
 

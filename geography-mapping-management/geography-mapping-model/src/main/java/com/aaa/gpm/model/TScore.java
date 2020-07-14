@@ -1,7 +1,15 @@
 package com.aaa.gpm.model;
 
-import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
+import java.util.Date;
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Accessors(chain = true)
 public class TScore {
     private Long id;
 
@@ -18,68 +26,4 @@ public class TScore {
     private Date createTime;
 
     private Date modifyTime;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getScorePlus() {
-        return scorePlus;
-    }
-
-    public void setScorePlus(Integer scorePlus) {
-        this.scorePlus = scorePlus;
-    }
-
-    public Integer getScoreSubtract() {
-        return scoreSubtract;
-    }
-
-    public void setScoreSubtract(Integer scoreSubtract) {
-        this.scoreSubtract = scoreSubtract;
-    }
-
-    public Integer getScore() {
-        return score;
-    }
-
-    public void setScore(Integer score) {
-        this.score = score;
-    }
-
-    public Long getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(Long unitId) {
-        this.unitId = unitId;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason == null ? null : reason.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
 }
