@@ -8,6 +8,7 @@ import com.aaa.gpm.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -49,7 +50,7 @@ public class DeptController extends CommonController<TDept> {
      * @return
      */
     @PostMapping("/addDept")
-    public ResultData addDept(Map map){
+    public ResultData addDept(@RequestParam Map map){
         return super.add(map);
     }
 
@@ -59,7 +60,7 @@ public class DeptController extends CommonController<TDept> {
      * @return
      */
     @PostMapping("/deleteDept")
-    public ResultData deleteDept(Map map){
+    public ResultData deleteDept(@RequestParam Map map){
         return super.delete(map);
     }
 
@@ -69,7 +70,7 @@ public class DeptController extends CommonController<TDept> {
      * @return
      */
     @PostMapping("/updateDept")
-    public ResultData updateDept(Map map){
+    public ResultData updateDept(@RequestParam Map map){
         return super.update(map);
     }
 

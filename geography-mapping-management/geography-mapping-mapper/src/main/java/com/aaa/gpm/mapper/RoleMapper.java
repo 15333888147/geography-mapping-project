@@ -1,7 +1,10 @@
 package com.aaa.gpm.mapper;
 
+import com.aaa.gpm.model.RoleMenu;
 import com.aaa.gpm.model.TRole;
-import com.aaa.gpm.model.TUser;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.HashMap;
@@ -18,4 +21,28 @@ public interface RoleMapper extends Mapper<TRole> {
      * @return
      */
     List<TRole> selectAlls(HashMap hashMap);
+
+    /**
+     * 添加"角色与菜单关联表"信息
+     * @param roleMenu
+     * @return
+     */
+    @Insert("insert into t_role_menu(ROLE_ID,MENU_ID) values(#{roleId},#{menuId})")
+    int addRoleMenu(RoleMenu roleMenu);
+
+    /**
+     * 查询当前角色的权限信息
+     * @param roleId
+     * @return
+     */
+    @Select("select * from t_role_menu where ROLE_ID=#{roleId}")
+    List<RoleMenu> selectByRoleId(Long roleId);
+
+    /**
+     * 删除"角色与菜单关联表"当前roleId信息
+     * @param roleId
+     * @return
+     */
+    @Delete("delete from t_role_menu where ROLE_ID=#{roleId}")
+    int delRoleMenu(Long roleId);
 }

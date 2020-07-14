@@ -3,13 +3,12 @@ package com.aaa.gpm.controller;
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
+import com.aaa.gpm.model.RoleMenuId;
 import com.aaa.gpm.model.TRole;
 import com.aaa.gpm.service.RoleService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +34,7 @@ public class RoleController extends CommonController<TRole> {
      * @return
      */
     @GetMapping("/roleList")
-    public ResultData<TRole> roleList(HashMap map){
+    public ResultData<TRole> roleList(@RequestParam HashMap map){
         map.put("pageNo",1);
         map.put("pageSize",5);
         PageInfo pageInfo = roleService.selectAlls(map);
@@ -48,32 +47,47 @@ public class RoleController extends CommonController<TRole> {
 
     /**
      * 添加角色信息
-     * @param map
+     * @param roleMenuId
      * @return
      */
     @PostMapping("/addRole")
-    public ResultData addRole(Map map){
-        return null;
+    public ResultData addRole(@RequestBody RoleMenuId roleMenuId){
+        Boolean aBoolean = roleService.addRole(roleMenuId);
+        if (aBoolean){
+            return super.addSuccess();
+        } else {
+            return super.addFailed();
+        }
     }
 
     /**
      * 删除角色信息
-     * @param map
+     * @param roleId
      * @return
      */
     @PostMapping("/delRole")
-    public ResultData delRole(Map map){
-        return null;
+    public ResultData delRole(Long roleId){
+        Boolean aBoolean = roleService.delRole(roleId);
+        if (aBoolean){
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
     }
 
     /**
      * 修改角色信息
-     * @param map
+     * @param roleMenuId
      * @return
      */
     @PostMapping("updateRole")
-    public ResultData updateRole(Map map){
-        return super.update(map);
+    public ResultData updateRole(@RequestParam RoleMenuId roleMenuId){
+        Boolean aBoolean = roleService.updateRole(roleMenuId);
+        if (aBoolean){
+            return super.updateSuccess();
+        } else {
+            return super.updateFailed();
+        }
     }
 
 }
