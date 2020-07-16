@@ -6,21 +6,20 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
+
+/**
+ * @Author: zj
+ * @Date: 2020/7/14
+ */
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Accessors(chain = true)
-public class TNews implements Serializable {
-    private Long id;
+public class RoleMenuId implements Serializable {
 
-    private String title;
+    private List<Long> menuId;
 
-    private String digest;
+    private TRole role;
 
-    private Date gmtCreate;
-
-    private Date gmtModified;
-
-    private String body;
 }

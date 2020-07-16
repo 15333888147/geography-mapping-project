@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
 @Data
 @Accessors(chain = true)
 @Table(name = "t_menu")
-public class TMenu {
+public class TMenu implements Serializable {
     @Id
     @Column(name = "MENU_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

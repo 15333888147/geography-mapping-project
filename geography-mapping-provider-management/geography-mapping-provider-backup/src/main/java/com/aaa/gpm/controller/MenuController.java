@@ -60,7 +60,7 @@ public class MenuController extends CommonController<TMenu> {
      * @return
      */
     @PostMapping("/insertMenu")
-    public ResultData insertMenu(Map map){
+    public ResultData insertMenu(@RequestParam Map map){
         map.put("parentId",0L);
         map.put("menuName","测试菜单");
         map.put("type","0");
@@ -77,17 +77,22 @@ public class MenuController extends CommonController<TMenu> {
      * @return
      */
     @PostMapping("/updateMenu")
-    public ResultData updateMenu(Map map){
+    public ResultData updateMenu(@RequestParam Map map){
         return super.update(map);
     }
 
     /**
      * 删除菜单或按钮
-     * @param map
+     * @param menuId
      * @return
      */
     @PostMapping("/deleteMenu")
-    public ResultData deleteMenu(Map map){
-        return super.delete(map);
+    public ResultData deleteMenu(@RequestBody Long menuId){
+        Integer res = menuService.delMenu(menuId);
+        if (res > 0){
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
     }
 }
