@@ -10,6 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>geography-mapping-model</artifactId>
-
+    <dependencies>
+        <!--java持久化API，就是类似与ORM的东西，主要用于和数据库交互的-->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+        </dependency>
+        <!--lombok，快速生成get set方法-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

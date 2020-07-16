@@ -2,7 +2,6 @@ package com.aaa.gpm.controller;
 
 import com.aaa.gpm.model.TMappingProject;
 import com.aaa.gpm.service.SpringcloudGpmService;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,10 +22,10 @@ public class ProjectController {
     * @Return com.github.pagehelper.PageInfo<com.aaa.gpm.model.TMappingProject>
     * 描述： 所有项目信息
     */
-    @PostMapping("/allProjects")
+    /*@PostMapping("/allProjects")
     public PageInfo<TMappingProject> allProjects(@RequestParam Integer pageNo, @RequestParam Integer pageSize){
         return springcloudGpmService.allProjects(pageNo,pageSize);
-    }
+    }*/
 
 
 }

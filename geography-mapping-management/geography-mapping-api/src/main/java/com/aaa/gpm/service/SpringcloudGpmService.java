@@ -2,7 +2,6 @@ package com.aaa.gpm.service;
 
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.*;
-import com.github.pagehelper.PageInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import java.util.List;
  * @Author: zj
  * @Date: 2020/7/13
  */
-@Service
 @FeignClient(value = "gpm-interface")
 public interface SpringcloudGpmService {
     /**@DateTime: 2020/7/15 15:07
@@ -39,16 +37,16 @@ public interface SpringcloudGpmService {
     @GetMapping("/firstMenu")
     List<TMenu> firstMenu(@RequestParam("id") Long id);
 
-    @PostMapping("/allProjects")
-    PageInfo<TMappingProject> allProjects(@RequestParam Integer pageNo,@RequestParam Integer pageSize);
+    /*@PostMapping("/allProjects")
+    PageInfo<TMappingProject> allProjects(@RequestParam Integer pageNo,@RequestParam Integer pageSize);*/
 
-    @GetMapping("/allCommit")
+/*    @GetMapping("/allCommit")
     PageInfo<TResultCommit> allCommit(Integer pageNo, Integer pageSize);
 
     @GetMapping("/selectProjectByName")
     List<TMappingProject> selectProjectByName(String name);
 
     @GetMapping("/selectCommitByName")
-    TResultCommit selectCommitByName(String name);
+    TResultCommit selectCommitByName(String name);*/
 
 }
