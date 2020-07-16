@@ -4,10 +4,14 @@ import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TMenu;
+import com.aaa.gpm.model.TRole;
 import com.aaa.gpm.service.MenuService;
+import com.aaa.gpm.utils.MyExcelExportUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +22,7 @@ import java.util.Map;
  * 菜单管理
  */
 @RestController
+@Slf4j
 public class MenuController extends CommonController<TMenu> {
 
     @Autowired
@@ -110,6 +115,20 @@ public class MenuController extends CommonController<TMenu> {
             return super.deleteSuccess();
         } else {
             return super.deleteFailed();
+        }
+    }
+
+    /**
+     * 导出菜单信息Excel表格
+     * @param response
+     */
+    @GetMapping("/exportMenuExcel")
+    public void exportMenuExcel(HttpServletResponse response){
+        List<TMenu> menus = menuService.exportMenuExcel();
+        if (null != menus && menus.size() >0){
+            MyExcelExportUtil.exportExcel(menus,TMenu.class,"菜单信息","菜单信息表",response);
+        } else{
+            log.error("菜单管理中的导出数据出错！");
         }
     }
 }

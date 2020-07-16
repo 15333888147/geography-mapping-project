@@ -5,6 +5,7 @@ import com.aaa.gpm.mapper.RoleMapper;
 import com.aaa.gpm.model.RoleMenu;
 import com.aaa.gpm.model.TMenu;
 import com.aaa.gpm.model.TRole;
+import com.aaa.gpm.model.TUser;
 import com.aaa.gpm.vo.RoleMenuVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -200,4 +201,15 @@ public class RoleService extends BaseService<TRole> {
         }
     }
 
+    /**
+     * 导出角色信息Excel表格
+     * @return
+     */
+    public List<TRole> exportRoleExcel(){
+        List<TRole> tRoles = roleMapper.selectAll();
+        if (null != tRoles && tRoles.size() >0){
+            return tRoles;
+        }
+        return null;
+    }
 }

@@ -54,7 +54,7 @@ public class UserService extends BaseService<TUser> {
      * 导出用户信息Excel表格
      * @return
      */
-    public List<TUser> selectAll(){
+    public List<TUser> exportUserExcel(){
         List<TUser> tUsers = userMappper.selectAlls(null);
         if (null != tUsers && tUsers.size() >0){
             return tUsers;

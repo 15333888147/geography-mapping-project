@@ -3,6 +3,7 @@ package com.aaa.gpm.service;
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.mapper.MenuMapper;
 import com.aaa.gpm.model.TMenu;
+import com.aaa.gpm.model.TRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -87,5 +88,17 @@ public class MenuService extends BaseService<TMenu> {
     public Integer delMenuAlls(List<Long> ids){
         Example example = Example.builder(TMenu.class).where(Sqls.custom().andIn("menuId",ids)).build();
         return menuMapper.deleteByExample(example);
+    }
+
+    /**
+     * 导出菜单信息Excel表格
+     * @return
+     */
+    public List<TMenu> exportMenuExcel(){
+        List<TMenu> tMenus = menuMapper.selectAll();
+        if (null != tMenus && tMenus.size() >0){
+            return tMenus;
+        }
+        return null;
     }
 }

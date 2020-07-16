@@ -44,11 +44,11 @@ public class TUser implements Serializable {
     private String status;
 
     @Column(name = "create_time")
-    @Excel(name = "创建时间", width = 25, orderNum = "7")
+    @Excel(name = "创建时间", width = 35, orderNum = "7")
     private String createTime;
 
     @Column(name = "modify_time")
-    @Excel(name = "修改时间", width = 25, orderNum = "8")
+    @Excel(name = "修改时间", width = 35, orderNum = "8")
     private String modifyTime;
 
     private String lastLoginTime;

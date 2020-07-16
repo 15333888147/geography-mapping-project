@@ -3,6 +3,7 @@ package com.aaa.gpm.service;
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.mapper.DeptMapper;
 import com.aaa.gpm.model.TDept;
+import com.aaa.gpm.model.TMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
@@ -55,5 +56,17 @@ public class DeptService extends BaseService<TDept> {
     public Integer delDeptAlls(List<Long> ids){
         Example example = Example.builder(TDept.class).where(Sqls.custom().andIn("deptId",ids)).build();
         return deptMapper.deleteByExample(example);
+    }
+
+    /**
+     * 导出部门信息Excel表格
+     * @return
+     */
+    public List<TDept> exportDeptExcel(){
+        List<TDept> depts = deptMapper.selectAll();
+        if (null != depts && depts.size() >0){
+            return depts;
+        }
+        return null;
     }
 }

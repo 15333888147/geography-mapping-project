@@ -4,10 +4,14 @@ import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TDept;
+import com.aaa.gpm.model.TMenu;
 import com.aaa.gpm.service.DeptService;
+import com.aaa.gpm.utils.MyExcelExportUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +20,7 @@ import java.util.Map;
  * @Date: 2020/7/14
  * 部门管理
  */
+@Slf4j
 @RestController
 public class DeptController extends CommonController<TDept> {
 
@@ -86,4 +91,17 @@ public class DeptController extends CommonController<TDept> {
         return super.update(map);
     }
 
+    /**
+     * 导出部门信息Excel表格
+     * @param response
+     */
+    @GetMapping("/exportDeptExcel")
+    public void exportDeptExcel(HttpServletResponse response){
+        List<TDept> menus = deptService.exportDeptExcel();
+        if (null != menus && menus.size() >0){
+            MyExcelExportUtil.exportExcel(menus,TDept.class,"部门信息","部门信息表",response);
+        } else{
+            log.error("部门管理中的导出数据出错！");
+        }
+    }
 }

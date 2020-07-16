@@ -95,15 +95,13 @@ public class UserController extends CommonController<TUser> {
         return super.update(map);
     }
 
-
-
     /**
      * 导出用户信息Excel表格
      * @param response
      */
     @GetMapping("/exportUserExcel")
     public void exportUserExcel(HttpServletResponse response){
-        List<TUser> users = userService.selectAll();
+        List<TUser> users = userService.exportUserExcel();
         if (null != users && users.size() >0){
             MyExcelExportUtil.exportExcel(users,TUser.class,"用户信息","用户信息表",response);
         } else{
@@ -112,3 +110,4 @@ public class UserController extends CommonController<TUser> {
 
     }
 }
+

@@ -2,6 +2,7 @@ package com.aaa.gpm.service;
 
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.mapper.DictMapper;
+import com.aaa.gpm.model.TDept;
 import com.aaa.gpm.model.TDict;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -45,6 +46,18 @@ public class DictService extends BaseService<TDict> {
     public Integer delDictAlls(List<Long> ids){
         Example example = Example.builder(TDict.class).where(Sqls.custom().andIn("dictId",ids)).build();
         return dictMapper.deleteByExample(example);
+    }
+
+    /**
+     * 导出字典信息Excel表格
+     * @return
+     */
+    public List<TDict> exportDictExcel(){
+        List<TDict> dicts = dictMapper.selectAll();
+        if (null != dicts && dicts.size() >0){
+            return dicts;
+        }
+        return null;
     }
 
 }

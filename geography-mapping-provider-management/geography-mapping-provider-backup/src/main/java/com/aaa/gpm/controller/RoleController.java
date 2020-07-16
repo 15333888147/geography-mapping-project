@@ -4,12 +4,16 @@ import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TRole;
+import com.aaa.gpm.model.TUser;
 import com.aaa.gpm.service.RoleService;
+import com.aaa.gpm.utils.MyExcelExportUtil;
 import com.aaa.gpm.vo.RoleMenuVo;
 import com.github.pagehelper.PageInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +22,7 @@ import java.util.List;
  * @Date: 2020/7/14
  */
 @RestController
+@Slf4j
 public class RoleController extends CommonController<TRole> {
 
     @Autowired
@@ -103,6 +108,21 @@ public class RoleController extends CommonController<TRole> {
         } else {
             return super.updateFailed();
         }
+    }
+
+    /**
+     * 导出角色信息Excel表格
+     * @param response
+     */
+    @GetMapping("/exportRoleExcel")
+    public void exportRoleExcel(HttpServletResponse response){
+        List<TRole> roles = roleService.exportRoleExcel();
+        if (null != roles && roles.size() >0){
+            MyExcelExportUtil.exportExcel(roles,TRole.class,"角色信息","角色信息表",response);
+        } else{
+            log.error("角色管理中的导出数据出错！");
+        }
+
     }
 
 }
