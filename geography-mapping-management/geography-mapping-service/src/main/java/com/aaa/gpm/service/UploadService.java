@@ -1,18 +1,8 @@
 package com.aaa.gpm.service;
 
 //import com.aaa.gpm.properties.FtpProperties;
-import com.aaa.gpm.utils.FileNameUtils;
 //import com.aaa.gpm.utils.FtpUtils;
-import org.apache.commons.httpclient.util.DateUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.Date;
-
-import static com.aaa.gpm.staticproperties.RedisProperties.POINT;
-import static com.aaa.gpm.staticproperties.TimeForatProperties.DATE_FORMAT;
 
 /**
  * @Author: zj

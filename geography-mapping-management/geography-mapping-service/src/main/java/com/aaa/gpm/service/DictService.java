@@ -7,8 +7,11 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.Sqls;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @Author: zj
@@ -32,6 +35,16 @@ public class DictService extends BaseService<TDict> {
             return page;
         }
         return null;
+    }
+
+    /**
+     * 批量删除字典信息
+     * @param ids
+     * @return
+     */
+    public Integer delDictAlls(List<Long> ids){
+        Example example = Example.builder(TDict.class).where(Sqls.custom().andIn("dictId",ids)).build();
+        return dictMapper.deleteByExample(example);
     }
 
 }

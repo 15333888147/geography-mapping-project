@@ -3,15 +3,15 @@ package com.aaa.gpm.controller;
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
-import com.aaa.gpm.model.RoleMenuId;
 import com.aaa.gpm.model.TRole;
 import com.aaa.gpm.service.RoleService;
+import com.aaa.gpm.vo.RoleMenuVo;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @Author: zj
@@ -47,12 +47,12 @@ public class RoleController extends CommonController<TRole> {
 
     /**
      * 添加角色信息
-     * @param roleMenuId
+     * @param roleMenuVo
      * @return
      */
     @PostMapping("/addRole")
-    public ResultData addRole(@RequestBody RoleMenuId roleMenuId){
-        Boolean aBoolean = roleService.addRole(roleMenuId);
+    public ResultData addRole(@RequestBody RoleMenuVo roleMenuVo){
+        Boolean aBoolean = roleService.addRole(roleMenuVo);
         if (aBoolean){
             return super.addSuccess();
         } else {
@@ -76,13 +76,28 @@ public class RoleController extends CommonController<TRole> {
     }
 
     /**
+     * 批量删除菜单信息
+     * @param ids
+     * @return
+     */
+    @PostMapping("/delRoleAlls")
+    public ResultData delRoleAlls(@RequestBody List<Long> ids){
+        Boolean integer = roleService.delRoleAlls(ids);
+        if (integer) {
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
+    }
+
+    /**
      * 修改角色信息
-     * @param roleMenuId
+     * @param roleMenuVo
      * @return
      */
     @PostMapping("updateRole")
-    public ResultData updateRole(@RequestParam RoleMenuId roleMenuId){
-        Boolean aBoolean = roleService.updateRole(roleMenuId);
+    public ResultData updateRole(@RequestParam RoleMenuVo roleMenuVo){
+        Boolean aBoolean = roleService.updateRole(roleMenuVo);
         if (aBoolean){
             return super.updateSuccess();
         } else {

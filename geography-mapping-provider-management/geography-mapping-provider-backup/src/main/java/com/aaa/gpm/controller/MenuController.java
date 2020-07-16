@@ -8,7 +8,9 @@ import com.aaa.gpm.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: zj
@@ -90,6 +92,21 @@ public class MenuController extends CommonController<TMenu> {
     public ResultData deleteMenu(@RequestBody Long menuId){
         Integer res = menuService.delMenu(menuId);
         if (res > 0){
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
+    }
+
+    /**
+     * 批量删除菜单信息
+     * @param ids
+     * @return
+     */
+    @PostMapping("/delMenuAlls")
+    public ResultData delDictAlls(@RequestBody List<Long> ids){
+        Integer integer = menuService.delMenuAlls(ids);
+        if (integer > 0) {
             return super.deleteSuccess();
         } else {
             return super.deleteFailed();

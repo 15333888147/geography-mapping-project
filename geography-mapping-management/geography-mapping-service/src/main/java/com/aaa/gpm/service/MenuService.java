@@ -3,9 +3,10 @@ package com.aaa.gpm.service;
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.mapper.MenuMapper;
 import com.aaa.gpm.model.TMenu;
-import com.aaa.gpm.model.TUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.Sqls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +14,10 @@ import java.util.List;
 /**
  * @Author: zj
  * @Date: 2020/7/13
+ * 菜单管理
  */
 @Service
-public class MenuService extends BaseService<TMenu>{
+public class MenuService extends BaseService<TMenu> {
 
     @Autowired
     private MenuMapper menuMapper;
@@ -62,4 +64,28 @@ public class MenuService extends BaseService<TMenu>{
         return allMenu;
     }
 
+    /**
+     * 删除当前的一级和二级菜单
+     * @param menuId
+     * @return
+     */
+    public Integer delMenu(Long menuId){
+        //删除当前menuId菜单
+        int res = menuMapper.deleteByPrimaryKey(menuId);
+        //根据menuId删除其对应二级菜单，如果有就删除，如果没有就删除失败
+        TMenu tMenu = new TMenu();
+        tMenu.setParentId(menuId);
+        menuMapper.delete(tMenu);
+        return res;
+    }
+
+    /**
+     * 批量删除菜单信息
+     * @param ids
+     * @return
+     */
+    public Integer delMenuAlls(List<Long> ids){
+        Example example = Example.builder(TMenu.class).where(Sqls.custom().andIn("menuId",ids)).build();
+        return menuMapper.deleteByExample(example);
+    }
 }

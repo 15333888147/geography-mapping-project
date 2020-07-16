@@ -1,5 +1,6 @@
-package com.aaa.gpm.model;
+package com.aaa.gpm.vo;
 
+import com.aaa.gpm.model.TRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class RoleMenuId implements Serializable {
+public class RoleMenuVo implements Serializable {
 
     private List<Long> menuId;
 

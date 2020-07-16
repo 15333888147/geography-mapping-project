@@ -9,10 +9,12 @@ import com.aaa.gpm.service.DictService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,6 +65,21 @@ public class DictController extends CommonController<TDict> {
     @PostMapping("/delDict")
     public ResultData delDict(@RequestParam Map map){
         return super.delete(map);
+    }
+
+    /**
+     * 批量删除部门信息
+     * @param ids
+     * @return
+     */
+    @PostMapping("/delDictAlls")
+    public ResultData delDictAlls(@RequestBody List<Long> ids){
+        Integer integer = dictService.delDictAlls(ids);
+        if (integer > 0) {
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
     }
 
     /**

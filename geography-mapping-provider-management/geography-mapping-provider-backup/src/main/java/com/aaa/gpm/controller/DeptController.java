@@ -6,10 +6,7 @@ import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TDept;
 import com.aaa.gpm.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -65,7 +62,22 @@ public class DeptController extends CommonController<TDept> {
     }
 
     /**
-     * 修改部门信息[
+     * 批量删除部门信息
+     * @param ids
+     * @return
+     */
+    @PostMapping("/delDeptAlls")
+    public ResultData delDeptAlls(@RequestBody List<Long> ids){
+        Integer integer = deptService.delDeptAlls(ids);
+        if (integer > 0) {
+            return super.deleteSuccess();
+        } else {
+            return super.deleteFailed();
+        }
+    }
+
+    /**
+     * 修改部门信息
      * @param map
      * @return
      */
@@ -73,6 +85,5 @@ public class DeptController extends CommonController<TDept> {
     public ResultData updateDept(@RequestParam Map map){
         return super.update(map);
     }
-
 
 }
