@@ -83,16 +83,11 @@ public class MenuController extends CommonController<TMenu> {
 
     /**
      * 删除菜单或按钮
-     * @param menuId
+     * @param map
      * @return
      */
     @PostMapping("/deleteMenu")
-    public ResultData deleteMenu(Long menuId){
-        Integer res = menuService.delMenu(menuId);
-        if (res > 0){
-            return super.deleteSuccess();
-        } else {
-            return super.deleteFailed();
-        }
+    public ResultData deleteMenu(Map map){
+        return super.delete(map);
     }
 }

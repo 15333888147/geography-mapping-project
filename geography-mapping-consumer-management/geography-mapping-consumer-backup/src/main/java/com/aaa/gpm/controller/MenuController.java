@@ -1,6 +1,7 @@
 package com.aaa.gpm.controller;
 
 import com.aaa.gpm.model.TMenu;
+import com.aaa.gpm.service.SpringcloudGpmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,8 +17,7 @@ import java.util.List;
 public class MenuController {
 
     @Autowired
-    com.zj.springcloud.mapper.service.SpringcloudGpmService springcloudGpmService;
-
+    private SpringcloudGpmService springcloudGpmService;
     @GetMapping("/firstMenu")
     @ResponseBody
     public List<TMenu> firstMenu(Long id){

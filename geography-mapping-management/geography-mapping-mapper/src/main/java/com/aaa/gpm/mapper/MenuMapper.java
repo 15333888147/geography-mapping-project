@@ -1,7 +1,6 @@
 package com.aaa.gpm.mapper;
 
 import com.aaa.gpm.model.TMenu;
-import com.aaa.gpm.model.TUser;
 import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
