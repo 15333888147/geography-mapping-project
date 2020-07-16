@@ -1,7 +1,7 @@
 package com.aaa.gpm.service;
 
 import com.aaa.gpm.base.BaseService;
-import com.aaa.gpm.mapper.UserMappper;
+import com.aaa.gpm.mapper.UserMapper;
 import com.aaa.gpm.model.TMenu;
 import com.aaa.gpm.model.TUser;
 import com.github.pagehelper.PageHelper;
@@ -24,7 +24,7 @@ import java.util.List;
 public class UserService extends BaseService<TUser> {
 
     @Autowired
-    private UserMappper userMappper;
+    private UserMapper userMappper;
 
     /**
      * 分页查询所有用户
