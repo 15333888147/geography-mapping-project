@@ -92,9 +92,13 @@ public class DeptController extends CommonController<TDept> {
     }
 
     /**
-     * 导出部门信息Excel表格
-     * @param response
-     */
+     * @author zj
+     * @DateTime: 2020/7/16 20:00
+     * @Params: [response]
+     * @Return void
+     * Description:
+     *      部门Excel导出
+    */
     @GetMapping("/exportDeptExcel")
     public void exportDeptExcel(HttpServletResponse response){
         List<TDept> menus = deptService.exportDeptExcel();
