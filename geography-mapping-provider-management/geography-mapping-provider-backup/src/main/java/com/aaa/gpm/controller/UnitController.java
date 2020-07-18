@@ -146,4 +146,21 @@ public class UnitController extends CommonController<TMappingUnit> {
         }
         return super.operationFailed("系统异常，查询失败");
     }
+
+    /**
+     * @author zj
+     * @DateTime: 2020/7/18 15:21
+     * @Params: [hashMap]
+     * @Return java.util.List<com.aaa.gpm.model.TMappingUnit>
+     * Description:
+     *      单位随机抽查
+    */
+    @PostMapping("/unitRandom")
+    public ResultData unitRandom(@RequestParam HashMap hashMap){
+        List<TMappingUnit> tMappingUnits = unitService.unitRandom(hashMap);
+        if (null != tMappingUnits && tMappingUnits.size() > 0){
+            return super.operationSuccess(tMappingUnits);
+        }
+        return super.operationFailed("系统异常，抽查失败");
+    }
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.util.Sqls;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -76,6 +77,22 @@ public class UnitService extends BaseService<TMappingUnit> {
         Integer integer = tMappingUnitMapper.registAudit(id);
         if (integer != null && integer > 0){
             return integer;
+        }
+        return null;
+    }
+
+    /**
+     * @author zj
+     * @DateTime: 2020/7/18 15:21
+     * @Params: [hashMap]
+     * @Return java.util.List<com.aaa.gpm.model.TMappingUnit>
+     * Description:
+     *      单位随机抽查
+    */
+    public List<TMappingUnit> unitRandom(HashMap hashMap){
+        List<TMappingUnit> tMappingUnits = tMappingUnitMapper.unitRandom(hashMap);
+        if (null != tMappingUnits && tMappingUnits.size() > 0){
+            return tMappingUnits;
         }
         return null;
     }

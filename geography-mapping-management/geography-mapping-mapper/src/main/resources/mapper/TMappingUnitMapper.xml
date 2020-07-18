@@ -78,4 +78,26 @@
     update t_mapping_unit set audit_status = 0 where audit_status = 1 and id = #{id}
   </update>
 
+  <select id="unitRandom" resultType="HashMap" parameterType="Map">
+    select @rownum := @rownum + 1, t_mapping_unit.*
+    from (select @rownum := 0) row,
+    t_mapping_unit
+    <where>
+      1=1
+      <if test="random !=null">
+        and @rownum &lt; (select round(count(*) * #{random}) from t_mapping_unit)
+      </if>
+      <choose>
+        <when test="owned_district !=null and owned_district !='其他'">
+          having owned_district = #{owned_district}
+        </when>
+        <when test="owned_district !=null and owned_district =='其他'">
+          having owned_district != '江城区' and owned_district != '阳春市' and owned_district != '阳东区' and
+          owned_district != '阳西县'
+        </when>
+      </choose>
+      order by rand()
+    </where>
+  </select>
+
 </mapper>
