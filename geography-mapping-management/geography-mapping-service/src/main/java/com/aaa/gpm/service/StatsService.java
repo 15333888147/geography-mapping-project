@@ -77,9 +77,9 @@ public class StatsService {
      *      公司概览
     */
     public List<List<Map>> companyOverview(Long userId){
-        List<List<Map>> list = new ArrayList<>();
-        List<Map> mapList = new ArrayList<>();
-        List<Map> mapLists = new ArrayList<>();
+        List<List<Map>> list = new ArrayList<List<Map>>();
+        List<Map> mapList = new ArrayList<Map>();
+        List<Map> mapLists = new ArrayList<Map>();
         // 项目数量
         List<Map> mappingCountStats = statsMapper.mappingCountStats(userId);
         if (null == mappingCountStats && mappingCountStats.size() ==0){
@@ -172,7 +172,7 @@ public class StatsService {
     */
     public List<List<Map>> personnelStats(){
         //总统计
-        List<List<Map>> list = new ArrayList<>();
+        List<List<Map>> list = new ArrayList<List<Map>>();
         //甲级单位数量
         Map unitJCount = statsMapper.unitJCount();
         //甲级初，中，高级技术员统计
