@@ -46,7 +46,7 @@ public class UserService extends BaseService<TUser> {
      * @return
      */
     public Integer delUserAlls(List<Long> ids){
-        Example example = Example.builder(TMenu.class).where(Sqls.custom().andIn("id",ids)).build();
+        Example example = Example.builder(TUser.class).where(Sqls.custom().andIn("id",ids)).build();
         return userMappper.deleteByExample(example);
     }
 
