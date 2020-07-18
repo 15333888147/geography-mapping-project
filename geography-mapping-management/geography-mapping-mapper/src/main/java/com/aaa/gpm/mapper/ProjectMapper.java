@@ -3,6 +3,8 @@ package com.aaa.gpm.mapper;
 import com.aaa.gpm.model.TMappingProject;
 import tk.mybatis.mapper.common.Mapper;
 
+import java.util.List;
+
 
 /**
  * @Author: gcy
@@ -10,4 +12,9 @@ import tk.mybatis.mapper.common.Mapper;
  * @Description: TODO
  */
 public interface ProjectMapper extends Mapper<TMappingProject> {
+
+    List<TMappingProject> selectNotAduitPass();
+
+    TMappingProject selectById(Long id);
+
 }

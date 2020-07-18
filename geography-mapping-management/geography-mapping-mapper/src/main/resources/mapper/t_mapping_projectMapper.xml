@@ -49,4 +49,12 @@
     <result column="contract_time" property="contractTime" jdbcType="VARCHAR" />
     <result column="coordinate" property="coordinate" jdbcType="LONGVARCHAR" />
   </resultMap>
+  <select id="selectNotAduitPass" resultMap="BaseResultMap">
+    select tmp.* from t_mapping_project tmp ,t_audit ta where tmp.id = ta.ref_id and ta.status = 1
+  </select>
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select * from t_mapping_project where id = #{id}
+  </select>
+
 </mapper>

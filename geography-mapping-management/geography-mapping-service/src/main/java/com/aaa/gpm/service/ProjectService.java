@@ -62,4 +62,17 @@ public class ProjectService  extends BaseService<TMappingProject> {
         }
         return null;
     }
+    /**@DateTime: 2020/7/16 9:29
+    * @Params: []
+    * @Return java.util.List<com.aaa.gpm.model.TMappingProject>
+    * 描述：
+     *      查询没有通过审核的项目
+    */
+    public List<TMappingProject> selectNotAduitPass(){
+        List<TMappingProject> tMappingProjects = projectMapper.selectNotAduitPass();
+        if (tMappingProjects != null && tMappingProjects.size()>0){
+            return tMappingProjects;
+        }
+        return null;
+    }
 }

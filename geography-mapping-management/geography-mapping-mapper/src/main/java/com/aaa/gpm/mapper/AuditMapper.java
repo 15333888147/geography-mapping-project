@@ -9,4 +9,6 @@ import java.util.List;
 public interface AuditMapper extends Mapper<TAudit> {
 
     List<TAudit> selectAuditByProjectId(@Param("id") Long id, @Param("type") Integer type);
+
+    List<TAudit> selectAuditByUnitId(@Param("id") Long id);
 }

@@ -17,4 +17,16 @@
     <result column="modify_time" property="modifyTime" jdbcType="DATE" />
     <result column="memo" property="memo" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="selectByRefBizId" resultMap="BaseResultMap">
+    select name from t_resource where ref_biz_id = #{id}
+  </select>
+  <select id="selectResource" resultType="HashMap" resultMap="BaseResultMap">
+    select tr.*
+    from t_resource tr,
+    t_mapping_unit tmu
+    where tr.ref_biz_id = tmu.id
+    <if test="id != null">
+      and tmu.id = #{id}
+    </if>
+  </select>
 </mapper>

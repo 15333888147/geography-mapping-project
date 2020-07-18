@@ -14,7 +14,7 @@ public class FileNameUtils {
      * 文件名的生成
      * @return
      */
-    public static String getFileName(){
+    public static Long getFileName(){
         //1.获取当前系统时间的毫秒数
         long currentTimeMillis = System.currentTimeMillis();
         //2.创建随机数对象
@@ -31,7 +31,7 @@ public class FileNameUtils {
          *          --->9--->009
          *          d:数字
          */
-        return currentTimeMillis + String.format("%03d",number);
+        return Long.parseLong(currentTimeMillis + String.format("%03d",number));
     }
 
 }

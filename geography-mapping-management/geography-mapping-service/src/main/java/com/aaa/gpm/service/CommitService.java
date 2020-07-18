@@ -2,7 +2,6 @@ package com.aaa.gpm.service;
 
 import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.mapper.CommitMapper;
-import com.aaa.gpm.model.TMappingProject;
 import com.aaa.gpm.model.TResultCommit;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

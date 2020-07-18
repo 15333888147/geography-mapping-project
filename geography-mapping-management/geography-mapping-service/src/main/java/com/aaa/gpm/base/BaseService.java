@@ -132,7 +132,7 @@ public abstract class BaseService<T> {
      * @param fileds
      * @return
      */
-    public PageInfo<T> selectListByPageAndFiled(Integer pageNo, Integer pageSize, Sqls where, String orderFiled, String... fileds) {
+    public PageInfo<T>selectListByPageAndFiled(Integer pageNo, Integer pageSize, Sqls where, String orderFiled, String... fileds) {
         return new PageInfo<T>(selectByFileds(pageNo, pageSize, where, orderFiled, null, fileds));
     }
 

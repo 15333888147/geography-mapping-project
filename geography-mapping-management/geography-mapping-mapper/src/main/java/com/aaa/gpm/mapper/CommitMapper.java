@@ -13,4 +13,5 @@ import java.util.List;
 public interface CommitMapper extends Mapper<TResultCommit> {
 
     TResultCommit selectCommitByProjectName(String name);
+
 }
