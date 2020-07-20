@@ -81,7 +81,7 @@ public class RoleController extends CommonController<TRole> {
     }
 
     /**
-     * 批量删除菜单信息
+     * 批量删除角色信息
      * @param ids
      * @return
      */
@@ -100,7 +100,7 @@ public class RoleController extends CommonController<TRole> {
      * @param roleMenuVo
      * @return
      */
-    @PostMapping("updateRole")
+    @PostMapping("/updateRole")
     public ResultData updateRole(@RequestParam RoleMenuVo roleMenuVo){
         Boolean aBoolean = roleService.updateRole(roleMenuVo);
         if (aBoolean){

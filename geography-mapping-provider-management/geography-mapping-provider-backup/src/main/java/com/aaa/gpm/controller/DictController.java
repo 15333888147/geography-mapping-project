@@ -40,7 +40,7 @@ public class DictController extends CommonController<TDict> {
      * @return
      */
     @PostMapping("/dictList")
-    public ResultData<TUser> list(@RequestParam HashMap map){
+    public ResultData<TUser> dictList(@RequestParam HashMap map){
         PageInfo pageInfo = dictService.selectAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -70,7 +70,7 @@ public class DictController extends CommonController<TDict> {
     }
 
     /**
-     * 批量删除部门信息
+     * 批量删除字典信息
      * @param ids
      * @return
      */

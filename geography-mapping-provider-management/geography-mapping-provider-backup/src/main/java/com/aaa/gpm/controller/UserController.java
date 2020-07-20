@@ -39,7 +39,7 @@ public class UserController extends CommonController<TUser> {
      * @return
      */
     @PostMapping("/userList")
-    public ResultData<TUser> list(@RequestParam HashMap map){
+    public ResultData<TUser> userList(@RequestParam HashMap map){
         PageInfo pageInfo = userService.selectAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);

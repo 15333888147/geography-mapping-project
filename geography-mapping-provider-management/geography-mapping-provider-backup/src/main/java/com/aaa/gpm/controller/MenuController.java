@@ -109,7 +109,7 @@ public class MenuController extends CommonController<TMenu> {
      * @return
      */
     @PostMapping("/delMenuAlls")
-    public ResultData delDictAlls(@RequestBody List<Long> ids){
+    public ResultData delMenuAlls(@RequestBody List<Long> ids){
         Integer integer = menuService.delMenuAlls(ids);
         if (integer > 0) {
             return super.deleteSuccess();
