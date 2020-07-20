@@ -5,12 +5,15 @@ import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TEquipment;
 import com.aaa.gpm.model.TResource;
+import com.aaa.gpm.model.TSpecialPost;
 import com.aaa.gpm.service.EquipmentService;
 import com.aaa.gpm.service.ResourceService;
 import com.github.pagehelper.PageInfo;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -67,5 +70,35 @@ public class EquipmentController extends CommonController<TEquipment> {
             return super.operationSuccess(map);
         }
         return super.operationFailed("查无此仪器");
+    }
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TEquipment>
+     * 描述：
+     *      修改仪器信息
+     */
+    @PostMapping("/updateEquipment")
+    public ResultData<TEquipment> updateSpecialPost(@RequestBody Map map){
+        return super.update(map);
+    }
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TEquipment>
+     * 描述：
+     *      增加仪器信息
+     */
+    @PostMapping("/addEquipment")
+    public ResultData<TEquipment> addSpecialPost(@RequestBody Map map){
+        return super.add(map);
+    }
+    /**@DateTime: 2020/7/20 10:26
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TEquipment>
+     * 描述：
+     *      删除仪器信息
+     */
+    @PostMapping("/deleteEquipment")
+    public ResultData<TEquipment> deleteSpecialPost(@RequestBody Map map){
+        return super.delete(map);
     }
 }

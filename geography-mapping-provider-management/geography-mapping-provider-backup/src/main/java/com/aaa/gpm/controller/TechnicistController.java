@@ -8,7 +8,11 @@ import com.aaa.gpm.service.TechnicistService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 /**
  * @Author: gcy
@@ -53,5 +57,34 @@ public class TechnicistController extends CommonController<TTechnicist> {
         }
         return super.operationFailed("查无此人");
     }
-
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TTechnicist>
+     * 描述：
+     *      修改技术人员信息
+    */
+    @PostMapping("/updateTechnicist")
+    public ResultData<TTechnicist> updateTechnicist(@RequestBody Map map){
+        return super.update(map);
+    }
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TTechnicist>
+     * 描述：
+     *      增加技术人员信息
+    */
+    @PostMapping("/addTechnicist")
+    public ResultData<TTechnicist> addTechnicist(@RequestBody Map map){
+        return super.add(map);
+    }
+    /**@DateTime: 2020/7/20 10:26
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TTechnicist>
+     * 描述：
+     *      删除技术人员信息
+    */
+    @PostMapping("/deleteTechnicist")
+    public ResultData<TTechnicist> deleteTechnicist(@RequestBody Map map){
+        return super.delete(map);
+    }
 }

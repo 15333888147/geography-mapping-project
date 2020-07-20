@@ -5,11 +5,14 @@ import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TResource;
 import com.aaa.gpm.model.TSpecialPost;
+import com.aaa.gpm.model.TTechnicist;
 import com.aaa.gpm.service.ResourceService;
 import com.aaa.gpm.service.SpecialPostService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -66,5 +69,35 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
             return super.operationSuccess(map);
         }
         return super.operationFailed("查无此特殊岗位人员");
+    }
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TSpecialPost>
+     * 描述：
+     *      修改特殊岗位人员信息
+     */
+    @PostMapping("/updateSpecialPost")
+    public ResultData<TSpecialPost> updateSpecialPost(@RequestBody Map map){
+        return super.update(map);
+    }
+    /**@DateTime: 2020/7/20 10:25
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TSpecialPost>
+     * 描述：
+     *      增加特殊岗位人员信息
+     */
+    @PostMapping("/addSpecialPost")
+    public ResultData<TSpecialPost> addSpecialPost(@RequestBody Map map){
+        return super.add(map);
+    }
+    /**@DateTime: 2020/7/20 10:26
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TSpecialPost>
+     * 描述：
+     *      删除特殊岗位人员信息
+     */
+    @PostMapping("/deleteSpecialPost")
+    public ResultData<TSpecialPost> deleteSpecialPost(@RequestBody Map map){
+        return super.delete(map);
     }
 }

@@ -5,8 +5,10 @@ import com.aaa.gpm.base.CommonController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TAudit;
 import com.aaa.gpm.model.TMappingProject;
+import com.aaa.gpm.model.TResource;
 import com.aaa.gpm.service.AuditService;
 import com.aaa.gpm.service.ProjectService;
+import com.aaa.gpm.service.ResourceService;
 import com.aaa.gpm.utils.FileNameUtils;
 import com.aaa.gpm.utils.StringUtils;
 import com.github.pagehelper.PageInfo;
@@ -14,6 +16,7 @@ import org.apache.commons.lang.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
@@ -35,6 +38,8 @@ public class ProjectController extends CommonController<TMappingProject> {
     private ProjectService projectService;
     @Autowired
     private AuditService auditService;
+    @Autowired
+    private ResourceService resourceService;
 
     @Override
     public BaseService<TMappingProject> getBaseService() {
@@ -193,5 +198,55 @@ public class ProjectController extends CommonController<TMappingProject> {
             return super.operationFailed("系统异常，无法修改当前项目的汇交成果信息审核状态");
         }
         return super.operationFailed();
+    }
+    /**@DateTime: 2020/7/20 8:35
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      添加项目,增加资源
+    */
+    @PostMapping("/addProject")
+    public ResultData addProject(@RequestBody Map map){
+        TMappingProject tMappingProject = new TMappingProject();
+        tMappingProject.setId(FileNameUtils.getFileName());
+        tMappingProject.setProjectType((String) map.get("project_type"));
+        tMappingProject.setManagementLevel((String) map.get("management_level"));
+        tMappingProject.setFundingSource((String) map.get("funding_source"));
+        tMappingProject.setProjectName((String) map.get("project_name"));
+        tMappingProject.setEntrustUnit((String) map.get("entrust_unit"));
+        tMappingProject.setAcceptUnit((String) map.get("accept_unit"));
+        tMappingProject.setProjectAmount((Double) map.get("project_amount"));
+        tMappingProject.setProjectLeader((String) map.get("project_leader"));
+        tMappingProject.setMobilePhone((String) map.get("mobile_phone"));
+        tMappingProject.setPhone((String) map.get("phone"));
+        tMappingProject.setAddress((String) map.get("address"));
+        tMappingProject.setStartDate((String) map.get("start_date"));
+        tMappingProject.setEndDate((String) map.get("end_date"));
+        tMappingProject.setAcceptanceDepartment((String) map.get("acceptance_department"));
+        tMappingProject.setAcceptanceReport((String) map.get("acceptance_report"));
+        tMappingProject.setTaskSource((String) map.get("task_source"));
+        tMappingProject.setProjectArea((Double) map.get("project_area"));
+        tMappingProject.setScale((String) map.get("scale"));
+        tMappingProject.setSheetNumber((String) map.get("sheet_number"));
+        tMappingProject.setAwardsDepartment((String) map.get("awards_department"));
+        tMappingProject.setPrizeLevel((String) map.get("prize_level"));
+        tMappingProject.setProjectQualityApproval((String) map.get("project_quality_approval"));
+        tMappingProject.setWinningTime((String) map.get("winning_time"));
+        tMappingProject.setAcceptanceTime((String) map.get("acceptance_time"));
+        tMappingProject.setBasicContent((String) map.get("basic_content"));
+        tMappingProject.setCreditStatus((String) map.get("credit_status"));
+        tMappingProject.setSubmitStatus((String) map.get("submit_status"));
+        tMappingProject.setMemo((String) map.get("memo"));
+        Integer addProject = projectService.add(tMappingProject);
+        TResource resource = new TResource();
+        resource.setCreateTime(new Date()).setId(FileNameUtils.getFileName()).setName((String) map.get("jiZhun")).setPath(FileNameUtils.getFileName()+""+((String) map.get("jiZhun")).substring(Integer.parseInt((String) map.get("jiZhun"))).lastIndexOf("."));
+        Integer addJiZhunXian = resourceService.add(resource);
+        TResource resource1 = new TResource();
+        resource.setCreateTime(new Date()).setId(FileNameUtils.getFileName()).setName((String) map.get("heTong")).setPath(FileNameUtils.getFileName()+""+((String) map.get("heTong")).substring(Integer.parseInt((String) map.get("heTong"))).lastIndexOf("."));
+        Integer addHeTong = resourceService.add(resource1);
+        if (addJiZhunXian != null && addJiZhunXian > 0 && addProject != null && addProject > 0 && addHeTong != null && addHeTong > 0){
+            return super.operationSuccess();
+        }
+        return super.operationFailed("添加失败，请检查是否上传合同以及基准线");
     }
 }
