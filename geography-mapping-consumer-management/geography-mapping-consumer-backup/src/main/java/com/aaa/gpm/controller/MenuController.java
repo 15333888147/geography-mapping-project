@@ -30,8 +30,8 @@ public class MenuController extends BaseController {
      * Description:
      *      查询当前用户下所有的菜单信息
     */
-    @GetMapping("/allMenu")
-    public ResultData<TMenu> allMenu(){
+   @GetMapping("/allMenu")
+    public ResultData allMenu(){
         return springcloudGpmService.allMenu();
     }
 
@@ -42,74 +42,74 @@ public class MenuController extends BaseController {
      * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TMenu>
      * Description:
      *      查询所有的一级菜单以及其对应子菜单
-    */
+    *//*
     @GetMapping("/allMenus")
     public ResultData<TMenu> allMenus(){
         return springcloudGpmService.allMenus();
     }
 
-    /**
+    *//**
      * @author zj
      * @DateTime: 2020/7/20 10:08
      * @Params: [map]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
      *      添加菜单或按钮
-    */
+    *//*
     @PostMapping("/insertMenu")
     public ResultData insertMenu(@RequestParam Map map){
         return springcloudGpmService.insertMenu(map);
     }
 
-    /**
+    *//**
      * @author zj
      * @DateTime: 2020/7/20 10:08
      * @Params: [map]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
      *      修改菜单或按钮
-    */
+    *//*
     @PostMapping("/updateMenu")
     public ResultData updateMenu(@RequestParam Map map){
         return springcloudGpmService.updateMenu(map);
     }
 
-    /**
+    *//**
      * @author zj
      * @DateTime: 2020/7/20 10:09
      * @Params: [menuId]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
      *      删除菜单或按钮
-    */
+    *//*
     @PostMapping("/deleteMenu")
     public ResultData deleteMenu(@RequestParam Long menuId){
         return springcloudGpmService.deleteMenu(menuId);
     }
 
-    /**
+    *//**
      * @author zj
      * @DateTime: 2020/7/20 10:10
      * @Params: [ids]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
      *      批量删除菜单信息
-    */
+    *//*
     @PostMapping("/delMenuAlls")
     public ResultData delMenuAlls(@RequestParam List<Long> ids){
         return springcloudGpmService.delMenuAlls(ids);
     }
 
-    /**
+    *//**
      * @author zj
      * @DateTime: 2020/7/20 10:11
      * @Params: [response]
      * @Return void
      * Description:
      *    导出菜单信息Excel表格
-    */
+    *//*
     @GetMapping("/exportMenuExcel")
     public void exportMenuExcel(HttpServletResponse response){
         springcloudGpmService.exportMenuExcel();
-    }
+    }*/
 }

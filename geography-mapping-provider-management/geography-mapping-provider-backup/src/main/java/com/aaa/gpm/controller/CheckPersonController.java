@@ -38,7 +38,7 @@ public class CheckPersonController extends CommonController<TCheckPerson> {
      *      人员随机抽查
     */
     @PostMapping("/personRandom")
-    public ResultData<TCheckPerson> personRandom(@RequestParam HashMap hashMap){
+    public ResultData personRandom(@RequestParam HashMap hashMap){
         List<TCheckPerson> tCheckPeople = checkPersonService.personRandom(hashMap);
         if (null != tCheckPeople && tCheckPeople.size()>0){
             return super.operationSuccess(tCheckPeople);

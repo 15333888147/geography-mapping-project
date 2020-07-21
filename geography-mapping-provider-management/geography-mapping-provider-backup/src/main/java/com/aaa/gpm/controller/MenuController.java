@@ -6,6 +6,7 @@ import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TMenu;
 import com.aaa.gpm.model.TRole;
 import com.aaa.gpm.service.MenuService;
+import com.aaa.gpm.utils.JSONUtils;
 import com.aaa.gpm.utils.MyExcelExportUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class MenuController extends CommonController<TMenu> {
      * @return
      */
     @GetMapping("/allMenu")
-    public ResultData<TMenu> allMenu(){
+    public ResultData allMenu(){
         List<TMenu> tMenus = menuService.allMenu(1L);
         if (null != tMenus || tMenus.size() != 0){
             return super.operationSuccess(tMenus);
@@ -52,7 +53,7 @@ public class MenuController extends CommonController<TMenu> {
      * @return
      */
     @GetMapping("/allMenus")
-    public ResultData<TMenu> allMenus(){
+    public ResultData allMenus(){
         List<TMenu> tMenus = menuService.allMenus();
         if (null != tMenus || tMenus.size() != 0){
             return super.operationSuccess(tMenus);

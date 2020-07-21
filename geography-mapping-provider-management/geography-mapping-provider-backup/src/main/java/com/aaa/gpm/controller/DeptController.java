@@ -37,7 +37,7 @@ public class DeptController extends CommonController<TDept> {
      * @return
      */
     @GetMapping("/deptList")
-    public ResultData<TDept> deptList(){
+    public ResultData deptList(){
         List<TDept> deptList = deptService.deptList();
         if (null != deptList && deptList.size() > 0){
             return super.operationSuccess(deptList);

@@ -40,7 +40,7 @@ public class DictController extends CommonController<TDict> {
      * @return
      */
     @PostMapping("/dictList")
-    public ResultData<TUser> dictList(@RequestParam HashMap map){
+    public ResultData dictList(@RequestParam HashMap map){
         PageInfo pageInfo = dictService.selectAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);

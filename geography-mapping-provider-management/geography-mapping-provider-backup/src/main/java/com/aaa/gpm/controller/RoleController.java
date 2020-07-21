@@ -39,7 +39,7 @@ public class RoleController extends CommonController<TRole> {
      * @return
      */
     @GetMapping("/roleList")
-    public ResultData<TRole> roleList(@RequestParam HashMap map){
+    public ResultData roleList(@RequestParam HashMap map){
         map.put("pageNo",1);
         map.put("pageSize",5);
         PageInfo pageInfo = roleService.selectAlls(map);

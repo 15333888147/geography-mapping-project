@@ -38,7 +38,7 @@ public class NewsController  extends CommonController<TNews> {
      * @return
      */
     @PostMapping("/newsList")
-    public ResultData<TUser> newsList(@RequestParam HashMap map){
+    public ResultData newsList(@RequestParam HashMap map){
         PageInfo pageInfo = newsService.selectNewsAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);
