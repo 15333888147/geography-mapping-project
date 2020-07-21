@@ -38,7 +38,7 @@ public class NewsController  extends CommonController<TNews> {
      * @return
      */
     @PostMapping("/newsList")
-    public ResultData newsList(@RequestParam HashMap map){
+    public ResultData newsList(@RequestBody HashMap map){
         PageInfo pageInfo = newsService.selectNewsAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -73,7 +73,7 @@ public class NewsController  extends CommonController<TNews> {
      * @return
      */
     @PostMapping("/delNewsAlls")
-    public ResultData delNewsAlls(@RequestBody List<Long> id){
+    public ResultData delNewsAlls(@RequestParam List<Long> id){
         Integer integer = newsService.delNewsAlls(id);
         if (integer > 0) {
             return super.deleteSuccess();

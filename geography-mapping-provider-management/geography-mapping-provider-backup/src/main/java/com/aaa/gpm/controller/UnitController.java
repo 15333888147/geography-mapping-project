@@ -15,10 +15,7 @@ import com.github.pagehelper.util.StringUtil;
 import org.apache.commons.httpclient.util.DateUtil;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -156,7 +153,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      单位随机抽查
     */
     @PostMapping("/unitRandom")
-    public ResultData unitRandom(@RequestParam HashMap hashMap){
+    public ResultData unitRandom(@RequestBody HashMap hashMap){
         List<TMappingUnit> tMappingUnits = unitService.unitRandom(hashMap);
         if (null != tMappingUnits && tMappingUnits.size() > 0){
             return super.operationSuccess(tMappingUnits);

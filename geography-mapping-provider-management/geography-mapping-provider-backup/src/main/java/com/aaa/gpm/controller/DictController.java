@@ -40,7 +40,7 @@ public class DictController extends CommonController<TDict> {
      * @return
      */
     @PostMapping("/dictList")
-    public ResultData dictList(@RequestParam HashMap map){
+    public ResultData dictList(@RequestBody HashMap map){
         PageInfo pageInfo = dictService.selectAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -75,7 +75,7 @@ public class DictController extends CommonController<TDict> {
      * @return
      */
     @PostMapping("/delDictAlls")
-    public ResultData delDictAlls(@RequestBody List<Long> ids){
+    public ResultData delDictAlls(@RequestParam List<Long> ids){
         Integer integer = dictService.delDictAlls(ids);
         if (integer > 0) {
             return super.deleteSuccess();

@@ -39,7 +39,7 @@ public class UserController extends CommonController<TUser> {
      * @return
      */
     @PostMapping("/userList")
-    public ResultData userList(@RequestParam HashMap map){
+    public ResultData userList(@RequestBody HashMap map){
         PageInfo pageInfo = userService.selectAlls(map);
         if (null != pageInfo || !("").equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -74,7 +74,7 @@ public class UserController extends CommonController<TUser> {
      * @return
      */
     @PostMapping("/delUserAlls")
-    public ResultData delUserAlls(@RequestBody List<Long> ids){
+    public ResultData delUserAlls(@RequestParam List<Long> ids){
         Integer integer = userService.delUserAlls(ids);
         if (integer > 0) {
             return super.deleteSuccess();

@@ -72,7 +72,7 @@ public class DeptController extends CommonController<TDept> {
      * @return
      */
     @PostMapping("/delDeptAlls")
-    public ResultData delDeptAlls(@RequestBody List<Long> ids){
+    public ResultData delDeptAlls(@RequestParam List<Long> ids){
         Integer integer = deptService.delDeptAlls(ids);
         if (integer > 0) {
             return super.deleteSuccess();

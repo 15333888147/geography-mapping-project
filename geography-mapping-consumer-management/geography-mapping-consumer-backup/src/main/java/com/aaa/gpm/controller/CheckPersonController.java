@@ -1,10 +1,9 @@
 package com.aaa.gpm.controller;
 
-import com.aaa.gpm.base.BaseService;
-import com.aaa.gpm.base.CommonController;
+import com.aaa.gpm.base.BaseController;
 import com.aaa.gpm.base.ResultData;
 import com.aaa.gpm.model.TCheckPerson;
-import com.aaa.gpm.service.CheckPersonService;
+import com.aaa.gpm.service.SpringcloudGpmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -12,27 +11,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @Author: zj
- * @Date: 2020/7/18
+ * @Date: 2020/7/20
+ * 人员随机抽查
  */
 @RestController
-public class CheckPersonController extends CommonController<TCheckPerson> {
+public class CheckPersonController extends BaseController {
 
     @Autowired
-    private CheckPersonService checkPersonService;
-
-    @Override
-    public BaseService<TCheckPerson> getBaseService() {
-        return checkPersonService;
-    }
+    private SpringcloudGpmService springcloudGpmService;
 
     /**
      * @author zj
-     * @DateTime: 2020/7/18 15:33
+     * @DateTime: 2020/7/20 10:57
      * @Params: [hashMap]
      * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TCheckPerson>
      * Description:
@@ -40,16 +34,12 @@ public class CheckPersonController extends CommonController<TCheckPerson> {
     */
     @PostMapping("/personRandom")
     public ResultData personRandom(@RequestBody HashMap hashMap){
-        List<TCheckPerson> tCheckPeople = checkPersonService.personRandom(hashMap);
-        if (null != tCheckPeople && tCheckPeople.size()>0){
-            return super.operationSuccess(tCheckPeople);
-        }
-        return super.operationFailed("系统异常，抽查失败");
+        return springcloudGpmService.personRandom(hashMap);
     }
 
     /**
      * @author zj
-     * @DateTime: 2020/7/18 15:35
+     * @DateTime: 2020/7/20 10:57
      * @Params: [map]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
@@ -57,12 +47,12 @@ public class CheckPersonController extends CommonController<TCheckPerson> {
     */
     @PostMapping("/addPerson")
     public ResultData addPerson(@RequestParam Map map){
-        return super.add(map);
+        return springcloudGpmService.addPerson(map);
     }
 
     /**
      * @author zj
-     * @DateTime: 2020/7/18 15:35
+     * @DateTime: 2020/7/20 10:58
      * @Params: [map]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
@@ -70,19 +60,20 @@ public class CheckPersonController extends CommonController<TCheckPerson> {
     */
     @PostMapping("/delPerson")
     public ResultData delPerson(@RequestParam Map map){
-        return super.delete(map);
+        return springcloudGpmService.delPerson(map);
     }
 
     /**
      * @author zj
-     * @DateTime: 2020/7/18 15:36
+     * @DateTime: 2020/7/20 10:58
      * @Params: [map]
      * @Return com.aaa.gpm.base.ResultData
      * Description:
-     *      人员修改
+     *     人员修改
     */
     @PostMapping("/updatePerson")
     public ResultData updatePerson(@RequestParam Map map){
-        return super.update(map);
+        return springcloudGpmService.updatePerson(map);
     }
+
 }

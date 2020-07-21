@@ -38,8 +38,8 @@ public class RoleController extends CommonController<TRole> {
      * @param map
      * @return
      */
-    @GetMapping("/roleList")
-    public ResultData roleList(@RequestParam HashMap map){
+    @PostMapping("/roleList")
+    public ResultData roleList(@RequestBody HashMap map){
         map.put("pageNo",1);
         map.put("pageSize",5);
         PageInfo pageInfo = roleService.selectAlls(map);
@@ -71,7 +71,7 @@ public class RoleController extends CommonController<TRole> {
      * @return
      */
     @PostMapping("/delRole")
-    public ResultData delRole(Long roleId){
+    public ResultData delRole(@RequestParam Long roleId){
         Boolean aBoolean = roleService.delRole(roleId);
         if (aBoolean){
             return super.deleteSuccess();
@@ -86,7 +86,7 @@ public class RoleController extends CommonController<TRole> {
      * @return
      */
     @PostMapping("/delRoleAlls")
-    public ResultData delRoleAlls(@RequestBody List<Long> ids){
+    public ResultData delRoleAlls(@RequestParam List<Long> ids){
         Boolean integer = roleService.delRoleAlls(ids);
         if (integer) {
             return super.deleteSuccess();
@@ -101,7 +101,7 @@ public class RoleController extends CommonController<TRole> {
      * @return
      */
     @PostMapping("/updateRole")
-    public ResultData updateRole(@RequestParam RoleMenuVo roleMenuVo){
+    public ResultData updateRole(@RequestBody RoleMenuVo roleMenuVo){
         Boolean aBoolean = roleService.updateRole(roleMenuVo);
         if (aBoolean){
             return super.updateSuccess();
