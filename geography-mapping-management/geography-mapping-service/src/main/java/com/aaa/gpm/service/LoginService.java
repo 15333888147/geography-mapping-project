@@ -4,6 +4,7 @@ import com.aaa.gpm.base.BaseService;
 import com.aaa.gpm.model.TUser;
 import com.aaa.gpm.vo.TokenVo;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.UUID;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
  */
 @Service
 public class LoginService extends BaseService<TUser> {
-    public TokenVo doLogin(TUser user) {
+    public TokenVo doLogin(@RequestBody TUser user) {
         TokenVo tokenVo = new TokenVo();
         TUser user1 = new TUser();
         // 1.判断User是否为null

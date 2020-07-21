@@ -19,7 +19,7 @@ public class CommitController extends CommonController<TResultCommit> {
     @Autowired
     private CommitService commitService;
     @Override
-    public BaseService<TResultCommit> getBaseService() {
+    public BaseService getBaseService() {
         return commitService;
     }
     /**@DateTime: 2020/7/17 15:31
@@ -29,7 +29,7 @@ public class CommitController extends CommonController<TResultCommit> {
      *      查询所有的汇交成果
     */
     @GetMapping("/allCommit")
-    public ResultData<TResultCommit> allCommit(Integer pageNo, Integer pageSize){
+    public ResultData allCommit(Integer pageNo, Integer pageSize){
         PageInfo pageInfo = commitService.allCommit(pageNo, pageSize);
         if (null!=pageInfo && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -43,7 +43,7 @@ public class CommitController extends CommonController<TResultCommit> {
      *      根据名称查询项目汇交成果
     */
     @GetMapping("/selectCommitByProjectName")
-    public ResultData<TResultCommit> selectCommitByProjectName(String name){
+    public ResultData selectCommitByProjectName(String name){
         TResultCommit tResultCommit = commitService.selectCommitByProjectName(name);
         if (null!=tResultCommit && !"".equals(tResultCommit)){
             return super.operationSuccess(tResultCommit);

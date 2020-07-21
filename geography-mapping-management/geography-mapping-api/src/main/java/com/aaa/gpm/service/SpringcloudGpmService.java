@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -543,4 +542,266 @@ public interface SpringcloudGpmService {
      */
     @PostMapping("/updatePerson")
     ResultData updatePerson(@RequestParam Map map);
+
+    /** @Author:  gcy
+     * @DateTime: 2020/7/21 16:28
+     * @Params: [id, type]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据项目id查询审核记录
+    */
+    @PostMapping("/selectAuditByProjectId")
+    ResultData selectAuditByProjectId(@RequestParam("id") Long id, @RequestParam("type") String type);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:24
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      审核项目所显示的信息
+     */
+    @GetMapping("/showAduitProject")
+    ResultData showAduitProject(@RequestParam("id") Long id);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:25
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      查询审核记录通过单位id
+     */
+    @GetMapping("/selectAuditByUnitId")
+    ResultData selectAuditByUnitId(@RequestParam("id") Long id);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:29
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      查询所有的汇交成果
+     */
+    @GetMapping("/allCommit")
+    ResultData allCommit(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:29
+     * @Params: [name]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据名称查询项目汇交成果
+     */
+    @GetMapping("/selectCommitByProjectName")
+    ResultData selectCommitByProjectName(@RequestParam("name") String name);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:31
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      查询所有仪器
+     */
+    @GetMapping("/allEquipment")
+    ResultData allEquipment(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:32
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据id查询仪器
+     */
+    @GetMapping("/selectEquipmentById")
+    ResultData selectEquipmentById(@RequestParam("id") Long id);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:33
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      修改仪器信息
+     */
+    @PostMapping("/updateSpecialPost")
+    ResultData updateSpecialPost(@RequestParam Map map);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:33
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      增加仪器信息
+     */
+    @PostMapping("/addEquipment")
+    ResultData addSpecialPost(@RequestParam Map map);
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:34
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      删除仪器信息
+     */
+    @PostMapping("/deleteEquipment")
+    ResultData deleteSpecialPost(@RequestParam Map map);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:38
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      分页查询所有负责人
+     */
+    @GetMapping("/selectAllTPrincipal")
+    ResultData selectAllTPrincipal(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:39
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据id查询负责人表和资源表
+     */
+    @GetMapping("/selectPrincipalAndResource")
+    ResultData selectPrincipalAndResource(@RequestParam("id") Long id);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:40
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      查询所有项目
+     */
+    @GetMapping("/allProjects")
+    ResultData allProjects(@RequestParam("pageNo") Integer pageNo, @RequestParam("pageSize") Integer pageSize);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:41
+     * @Params: [name]
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TMappingProject>
+     * 描述：
+     *      通过名称查询项目
+     */
+    @PostMapping("/selectProjectByName")
+    ResultData<TMappingProject> selectProjectByName(@RequestParam("name") String name);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:42
+     * @Params: []
+     * @Return com.aaa.gpm.base.ResultData<com.aaa.gpm.model.TMappingProject>
+     * 描述：
+     *      查询没有审核通过的项目
+     */
+    @GetMapping("/selectNotAduitPass")
+    ResultData<TMappingProject> selectNotAduitPass();
+
+    /**@Author:gcy
+     * @DateTime: 2020/7/21 15:42
+     * @Params: [id, audit_status]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      修改项目审核状态，并增加审核记录
+     */
+    @PostMapping("/updateProjectAuditById")
+    ResultData updateProjectAuditById(@RequestParam("id") Long id,@RequestParam("audit_status") Integer audit_status);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:43
+     * @Params: [id, results_status]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      修改项目汇交成果信息审核状态，并增加审核记录
+     */
+    @PostMapping("/updateProjectResultById")
+    ResultData updateProjectResultById(@RequestParam("id") Long id,@RequestParam("results_status") Integer results_status);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:44
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      添加项目,增加资源
+     */
+    @PostMapping("/addProject")
+    ResultData addProject(@RequestParam Map map);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:54
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      通过id查询项目、汇交成果以及资源
+     */
+    @GetMapping("/selectProjectCommitResouceById")
+    ResultData selectProjectCommitResouceById(@RequestParam("id") Long id);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:56
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      通过id查询资源
+     */
+    @GetMapping("/selectResource")
+    ResultData selectResource(@RequestParam("id") Long id);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:58
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      分页查询所有技术人员
+     */
+    @GetMapping("/selectAllTechnicist")
+    ResultData selectAllTechnicist(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:58
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据id查询技术人员详细信息
+     */
+    @GetMapping("/selectTechnicistById")
+    ResultData selectTechnicistById(@RequestParam("id") Long id);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 15:59
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      修改技术人员信息
+     */
+    @PostMapping("/updateTechnicist")
+    ResultData updateTechnicist(@RequestParam Map map);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 16:00
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      增加技术人员信息
+     */
+    @PostMapping("/addTechnicist")
+    ResultData addTechnicist(@RequestParam Map map);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 16:00
+     * @Params: [map]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *         删除技术人员信息
+     */
+    @PostMapping("/deleteTechnicist")
+    ResultData deleteTechnicist(@RequestParam Map map);
+
+    /**@Author:gcy
+     *@DateTime: 2020/7/21 16:02
+     * @Params: [pageNo, pageSize]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      查询所有特殊岗位人员
+     */
+    @GetMapping("/selectAllSpecialPost")
+    ResultData selectAllSpecialPost(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize);
+
+    /**@Author:gcy
+     * @DateTime: 2020/7/21 16:03
+     * @Params: [id]
+     * @Return com.aaa.gpm.base.ResultData
+     * 描述：
+     *      根据id查询特殊岗位人员
+     */
+    @GetMapping("/selectSpecialPostById")
+    ResultData selectSpecialPostById(@RequestParam("id") Long id);
 }

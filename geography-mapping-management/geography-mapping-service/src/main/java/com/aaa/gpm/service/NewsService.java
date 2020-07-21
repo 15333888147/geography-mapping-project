@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.Sqls;
 
@@ -30,7 +31,7 @@ public class NewsService extends BaseService<TNews> {
      * @param hashMap
      * @return
      */
-    public PageInfo selectNewsAlls(HashMap hashMap){
+    public PageInfo selectNewsAlls(@RequestBody HashMap hashMap){
         PageHelper.startPage(Integer.parseInt(hashMap.get("pageNo")+""),Integer.parseInt(hashMap.get("pageSize")+""));
         PageInfo page = new PageInfo(newsMapper.selectNewsAlls(hashMap));
         if (null != page && !"".equals(page)){

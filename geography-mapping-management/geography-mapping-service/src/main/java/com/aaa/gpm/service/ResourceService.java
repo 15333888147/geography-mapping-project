@@ -6,6 +6,7 @@ import com.aaa.gpm.model.TResource;
 import com.aaa.gpm.model.TScore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class ResourceService extends BaseService<TResource> {
     * 描述：
      *      通过refbizid查询资源
     */
-    public List<TResource> selectByRefBizId(Long refbizid){
+    public List<TResource> selectByRefBizId(@RequestParam("refbizid") Long refbizid){
         TResource tResource = new TResource();
         tResource.setRefBizId(refbizid);
         List<TResource> tResources = super.selectList(tResource);
@@ -39,7 +40,7 @@ public class ResourceService extends BaseService<TResource> {
      * 描述：
      *      查询资源
     */
-    public List<TResource> selectResource(Long id){
+    public List<TResource> selectResource(@RequestParam("id") Long id){
         List<TResource> tScores = resourceMapper.selectResource(id);
         if (tScores != null && tScores.size()>0){
             return tScores;

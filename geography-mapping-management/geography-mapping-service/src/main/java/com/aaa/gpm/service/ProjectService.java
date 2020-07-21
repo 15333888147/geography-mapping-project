@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ProjectService  extends BaseService<TMappingProject> {
     * 描述：
      *      通过Id查询对象
     */
-    public TMappingProject selectById(Long id){
+    public TMappingProject selectById(@RequestParam("id") Long id){
         TMappingProject tMappingProject = new TMappingProject();
         tMappingProject.setId(id);
         List<TMappingProject> tMappingProjects = super.selectList(tMappingProject);
@@ -39,7 +40,7 @@ public class ProjectService  extends BaseService<TMappingProject> {
     * @Return com.github.pagehelper.PageInfo
     * 描述： 分页查询所有项目
     */
-    public PageInfo allProjects(Integer pageNo,Integer pageSize){
+    public PageInfo allProjects(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         List<TMappingProject> tMappingProjects = projectMapper.selectAll();
         PageInfo pageInfo = new PageInfo(tMappingProjects);
@@ -53,7 +54,7 @@ public class ProjectService  extends BaseService<TMappingProject> {
     * @Return com.aaa.gpm.model.TMappingProject
     * 描述：根据名字查询项目
     */
-    public TMappingProject selectProjectByName(String name){
+    public TMappingProject selectProjectByName(@RequestParam("name") String name){
         TMappingProject tMappingProject = new TMappingProject();
         tMappingProject.setProjectName(name);
         TMappingProject project = super.selectOne(tMappingProject);

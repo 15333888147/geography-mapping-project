@@ -42,7 +42,7 @@ public class EquipmentController extends CommonController<TEquipment> {
      *      查询所有仪器
     */
     @GetMapping("/allEquipment")
-    public ResultData<TEquipment> allEquipment(Integer pageNo,Integer pageSize){
+    public ResultData allEquipment(Integer pageNo,Integer pageSize){
         PageInfo<TEquipment> pageInfo = equipmentService.selectListByPage(null, pageNo, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -56,7 +56,7 @@ public class EquipmentController extends CommonController<TEquipment> {
      *      根据id查询仪器
     */
     @GetMapping("/selectEquipmentById")
-    public ResultData<Map> selectEquipmentById(Long id){
+    public ResultData selectEquipmentById(Long id){
         Map map = new HashMap();
         TEquipment tEquipment = new TEquipment();
         tEquipment.setId(id);
@@ -78,7 +78,7 @@ public class EquipmentController extends CommonController<TEquipment> {
      *      修改仪器信息
      */
     @PostMapping("/updateEquipment")
-    public ResultData<TEquipment> updateSpecialPost(@RequestBody Map map){
+    public ResultData updateSpecialPost(@RequestBody Map map){
         return super.update(map);
     }
     /**@DateTime: 2020/7/20 10:25
@@ -88,7 +88,7 @@ public class EquipmentController extends CommonController<TEquipment> {
      *      增加仪器信息
      */
     @PostMapping("/addEquipment")
-    public ResultData<TEquipment> addSpecialPost(@RequestBody Map map){
+    public ResultData addSpecialPost(@RequestBody Map map){
         return super.add(map);
     }
     /**@DateTime: 2020/7/20 10:26
@@ -98,7 +98,7 @@ public class EquipmentController extends CommonController<TEquipment> {
      *      删除仪器信息
      */
     @PostMapping("/deleteEquipment")
-    public ResultData<TEquipment> deleteSpecialPost(@RequestBody Map map){
+    public ResultData deleteSpecialPost(@RequestBody Map map){
         return super.delete(map);
     }
 }

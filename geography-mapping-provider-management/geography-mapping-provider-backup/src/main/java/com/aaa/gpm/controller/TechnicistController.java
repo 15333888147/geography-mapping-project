@@ -34,7 +34,7 @@ public class TechnicistController extends CommonController<TTechnicist> {
      *      查询所有技术人员表
     */
     @GetMapping("/selectAllTechnicist")
-    public ResultData<TTechnicist> selectAllTechnicist(Integer pageNo,Integer pageSize){
+    public ResultData selectAllTechnicist(Integer pageNo,Integer pageSize){
         PageInfo<TTechnicist> pageInfo = technicistService.selectListByPage(null, pageNo, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -48,7 +48,7 @@ public class TechnicistController extends CommonController<TTechnicist> {
      *      根据id查询技术人员详细信息
     */
     @GetMapping("/selectTechnicistById")
-    public ResultData<TTechnicist> selectTechnicistById(Long id){
+    public ResultData selectTechnicistById(Long id){
         TTechnicist tTechnicist = new TTechnicist();
         tTechnicist.setId(id);
         TTechnicist selectOne = technicistService.selectOne(tTechnicist);
@@ -64,7 +64,7 @@ public class TechnicistController extends CommonController<TTechnicist> {
      *      修改技术人员信息
     */
     @PostMapping("/updateTechnicist")
-    public ResultData<TTechnicist> updateTechnicist(@RequestBody Map map){
+    public ResultData updateTechnicist(@RequestBody Map map){
         return super.update(map);
     }
     /**@DateTime: 2020/7/20 10:25
@@ -74,7 +74,7 @@ public class TechnicistController extends CommonController<TTechnicist> {
      *      增加技术人员信息
     */
     @PostMapping("/addTechnicist")
-    public ResultData<TTechnicist> addTechnicist(@RequestBody Map map){
+    public ResultData addTechnicist(@RequestBody Map map){
         return super.add(map);
     }
     /**@DateTime: 2020/7/20 10:26
@@ -84,7 +84,7 @@ public class TechnicistController extends CommonController<TTechnicist> {
      *      删除技术人员信息
     */
     @PostMapping("/deleteTechnicist")
-    public ResultData<TTechnicist> deleteTechnicist(@RequestBody Map map){
+    public ResultData deleteTechnicist(@RequestBody Map map){
         return super.delete(map);
     }
 }

@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class CommitService extends BaseService<TResultCommit> {
     * 描述：
      *      根据refid查询汇交结果
     */
-    public List<TResultCommit> selectByRefId(Long refid){
+    public List<TResultCommit> selectByRefId(@RequestParam("refid") Long refid){
         TResultCommit tResultCommit = new TResultCommit();
         tResultCommit.setRefId(refid);
         List<TResultCommit> tResultCommits = super.selectList(tResultCommit);
@@ -39,7 +40,7 @@ public class CommitService extends BaseService<TResultCommit> {
     * @Return com.github.pagehelper.PageInfo<com.aaa.gpm.model.TResultCommit>
     * 描述： 所有汇交成果
     */
-    public PageInfo<TResultCommit> allCommit(Integer pageNo,Integer pageSize){
+    public PageInfo<TResultCommit> allCommit(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         List<TResultCommit> tResultCommits = commitMapper.selectAll();
         PageInfo pageInfo = new PageInfo(tResultCommits);
@@ -54,7 +55,7 @@ public class CommitService extends BaseService<TResultCommit> {
     * 描述：
      *      根据名字查询汇交成果
     */
-    public TResultCommit selectCommitByProjectName(String name){
+    public TResultCommit selectCommitByProjectName(@RequestParam("name") String name){
         TResultCommit tResultCommit = commitMapper.selectCommitByProjectName(name);
         if (null != tResultCommit && !"".equals(tResultCommit)){
             return tResultCommit;

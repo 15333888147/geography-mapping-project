@@ -10,6 +10,7 @@ import com.aaa.gpm.model.TMappingProject;
 import com.aaa.gpm.model.TResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +40,7 @@ public class AuditService extends BaseService<TAudit> {
      * 描述：
      *      根据项目id查询审核记录
      */
-    public List<TAudit> selectAuditByProjectId(Long id,String type){
+    public List<TAudit> selectAuditByProjectId(@RequestParam("id") Long id,@RequestParam("type") String type){
         Integer typeNo = null;
         if (type.equals("项目信息")){
             typeNo = 2;
@@ -58,7 +59,7 @@ public class AuditService extends BaseService<TAudit> {
      * 描述：
      *      审核项目显示的数据
      */
-    public Map showAduitProject(Long id){
+    public Map showAduitProject(@RequestParam("id") Long id){
         Map map = new HashMap();
         TMappingProject tMappingProject = new TMappingProject();
         tMappingProject.setId(id);
@@ -80,7 +81,7 @@ public class AuditService extends BaseService<TAudit> {
     * 描述：
      *      根据单位id查询审核记录
     */
-    public List<TAudit> selectAuditByUnitId(Long id){
+    public List<TAudit> selectAuditByUnitId(@RequestParam("id") Long id){
         List<TAudit> tAudits = auditMapper.selectAuditByUnitId(id);
         return tAudits;
     }

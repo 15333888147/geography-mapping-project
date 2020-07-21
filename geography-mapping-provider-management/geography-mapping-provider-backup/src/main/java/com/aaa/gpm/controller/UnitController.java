@@ -48,7 +48,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      查询所有单位
     */
     @GetMapping("/allUnit")
-    public ResultData<TMappingUnit> allUnit(TMappingUnit tMappingUnit,Integer pageNo,Integer pageSize){
+    public ResultData allUnit(TMappingUnit tMappingUnit,Integer pageNo,Integer pageSize){
         PageInfo<TMappingUnit> allUnit = unitService.allUnit(tMappingUnit, pageNo, pageSize);
         if (null != allUnit && !"".equals(allUnit)){
             return super.operationSuccess(allUnit);
@@ -62,7 +62,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      通过单位名称查询单位信息
     */
     @GetMapping("/selectUnitByName")
-    public ResultData<TMappingUnit> selectUnitByName(Integer pageNo, Integer pageSize, String name){
+    public ResultData selectUnitByName(Integer pageNo, Integer pageSize, String name){
         PageInfo<TMappingUnit> tMappingUnitPageInfo = unitService.selectUnitByName(pageNo, pageSize,name);
         if (tMappingUnitPageInfo != null && !"".equals(tMappingUnitPageInfo)){
             return super.operationSuccess(tMappingUnitPageInfo);
@@ -88,7 +88,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      增加资源表
     */
     @PostMapping("/updateScore")
-    public ResultData<Long> updateScore(Long id, Integer score_plus, Integer score_subtract, Integer score, Long unit_id, String reason, Date create_time, Date modify_time,String name){
+    public ResultData updateScore(Long id, Integer score_plus, Integer score_subtract, Integer score, Long unit_id, String reason, Date create_time, Date modify_time,String name){
         Long aLong = unitService.updateScore(score_plus, score_subtract, unit_id);
         if (aLong != null && aLong>0){
             Integer integer = scoreService.addScore(id, score_plus, score_subtract, score, unit_id, reason, create_time, modify_time);
@@ -113,7 +113,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      注册审核
     */
     @PostMapping("/registAudit")
-    public ResultData<Integer> registAudit(Long id){
+    public ResultData registAudit(Long id){
         Integer integer = unitService.registAudit(id);
         if (integer != null && integer > 0) {
             return super.operationSuccess(integer);
@@ -127,7 +127,7 @@ public class UnitController extends CommonController<TMappingUnit> {
      *      黑白名单
     */
     @GetMapping("/blackWhite")
-    public ResultData<List<TMappingUnit>> blackWhite(String blackWhite,Integer pageNo,Integer pageSize){
+    public ResultData blackWhite(String blackWhite,Integer pageNo,Integer pageSize){
         TMappingUnit tMappingUnit = new TMappingUnit();
         Map map = new HashMap();
         map.put("pageNo",pageNo);

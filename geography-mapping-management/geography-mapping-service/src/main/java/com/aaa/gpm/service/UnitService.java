@@ -5,8 +5,11 @@ import com.aaa.gpm.mapper.TMappingUnitMapper;
 import com.aaa.gpm.model.TMappingUnit;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.util.Sqls;
 
 import java.util.Date;
@@ -29,7 +32,7 @@ public class UnitService extends BaseService<TMappingUnit> {
     * 描述：
      *      查询所有单位
     */
-    public PageInfo<TMappingUnit> allUnit(TMappingUnit tMappingUnit,Integer pageNo,Integer pageSize){
+    public PageInfo<TMappingUnit> allUnit(@RequestBody TMappingUnit tMappingUnit,@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize){
         PageHelper.startPage(pageNo,pageSize);
         PageInfo<TMappingUnit> tMappingUnitPageInfo = super.selectListByPage(tMappingUnit, pageNo, pageSize);
         if (null != tMappingUnitPageInfo && !"".equals(tMappingUnitPageInfo)){
@@ -43,7 +46,7 @@ public class UnitService extends BaseService<TMappingUnit> {
     * 描述：
      *      条件查询
     */
-    public PageInfo<TMappingUnit> selectUnitByName(Integer pageNo, Integer pageSize, String name){
+    public PageInfo<TMappingUnit> selectUnitByName(@RequestParam("pageNo") Integer pageNo,@RequestParam("pageSize") Integer pageSize,@RequestParam("name") String name){
         PageHelper.startPage(pageNo,pageSize);
         List<TMappingUnit> tMappingUnits = tMappingUnitMapper.selectUnitByName(name);
         if (tMappingUnits != null && tMappingUnits.size()>0){
@@ -60,7 +63,7 @@ public class UnitService extends BaseService<TMappingUnit> {
      *      添加分值表
      *      添加资源表
     */
-    public Long updateScore( Integer score_plus, Integer score_subtract, Long unit_id){
+    public Long updateScore(@RequestParam("score_plus") Integer score_plus,@RequestParam("score_subtract") Integer score_subtract,@RequestParam("unit_id") Long unit_id){
         Long aLong = tMappingUnitMapper.updateScore(score_plus, score_subtract, unit_id);
         if (aLong != null && aLong>0){
             return aLong;
@@ -73,7 +76,7 @@ public class UnitService extends BaseService<TMappingUnit> {
      * 描述：
      *      注册审核
     */
-    public Integer registAudit(Long id){
+    public Integer registAudit(@RequestParam("id") Long id){
         Integer integer = tMappingUnitMapper.registAudit(id);
         if (integer != null && integer > 0){
             return integer;
@@ -89,7 +92,7 @@ public class UnitService extends BaseService<TMappingUnit> {
      * Description:
      *      单位随机抽查
     */
-    public List<TMappingUnit> unitRandom(HashMap hashMap){
+    public List<TMappingUnit> unitRandom(@RequestBody HashMap hashMap){
         List<TMappingUnit> tMappingUnits = tMappingUnitMapper.unitRandom(hashMap);
         if (null != tMappingUnits && tMappingUnits.size() > 0){
             return tMappingUnits;

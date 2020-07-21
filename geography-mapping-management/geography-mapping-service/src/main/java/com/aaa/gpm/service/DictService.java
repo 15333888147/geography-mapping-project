@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 import tk.mybatis.mapper.entity.Example;
 import tk.mybatis.mapper.util.Sqls;
 
@@ -29,7 +30,7 @@ public class DictService extends BaseService<TDict> {
      * @param hashMap
      * @return
      */
-    public PageInfo selectAlls(HashMap hashMap){
+    public PageInfo selectAlls(@RequestBody HashMap hashMap){
         PageHelper.startPage(Integer.parseInt(hashMap.get("pageNo")+""),Integer.parseInt(hashMap.get("pageSize")+""));
         PageInfo page = new PageInfo(dictMapper.selectAlls(hashMap));
         if (null != page && !"".equals(page)){
@@ -43,7 +44,7 @@ public class DictService extends BaseService<TDict> {
      * @param ids
      * @return
      */
-    public Integer delDictAlls(List<Long> ids){
+    public Integer delDictAlls(@RequestBody List<Long> ids){
         Example example = Example.builder(TDict.class).where(Sqls.custom().andIn("dictId",ids)).build();
         return dictMapper.deleteByExample(example);
     }

@@ -52,7 +52,7 @@ public class ProjectController extends CommonController<TMappingProject> {
     * 描述：查询所有项目
     */
     @GetMapping("/allProjects")
-    public ResultData<TMappingProject> allProjects(Integer pageNo,Integer pageSize){
+    public ResultData allProjects(Integer pageNo,Integer pageSize){
         PageInfo pageInfo = projectService.allProjects(pageNo, pageSize);
         if (null!=pageInfo && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -66,7 +66,7 @@ public class ProjectController extends CommonController<TMappingProject> {
      *      通过名称查询项目
     */
     @PostMapping("/selectProjectByName")
-    public ResultData<TMappingProject> selectProjectByName(String name){
+    public ResultData selectProjectByName(String name){
         TMappingProject project = projectService.selectProjectByName(name);
         if (null != project && !"".equals(project)){
             return super.operationSuccess(project);
@@ -80,7 +80,7 @@ public class ProjectController extends CommonController<TMappingProject> {
      *      查询没有审核通过的项目
     */
     @GetMapping("/selectNotAduitPass")
-    public ResultData<TMappingProject> selectNotAduitPass(){
+    public ResultData selectNotAduitPass(){
         List<TMappingProject> tMappingProjects = projectService.selectNotAduitPass();
         if (tMappingProjects != null && tMappingProjects.size()>0){
            return super.operationSuccess(tMappingProjects);
@@ -94,7 +94,7 @@ public class ProjectController extends CommonController<TMappingProject> {
      *      修改项目审核状态，并增加审核记录
     */
     @PostMapping("/updateProjectAuditById")
-    public ResultData<Integer> updateProjectAuditById(Long id,Integer audit_status){
+    public ResultData updateProjectAuditById(Long id,Integer audit_status){
         TMappingProject tMappingProject = new TMappingProject();
         Map map = new HashMap();
         tMappingProject.setId(id);
@@ -154,7 +154,7 @@ public class ProjectController extends CommonController<TMappingProject> {
      *      修改项目汇交成果信息审核状态，并增加审核记录
     */
     @PostMapping("/updateProjectResultById")
-    public ResultData<Integer> updateProjectResultById(Long id,Integer results_status){
+    public ResultData updateProjectResultById(Long id,Integer results_status){
         TMappingProject tMappingProject = new TMappingProject();
         Map map = new HashMap();
         tMappingProject.setId(id);

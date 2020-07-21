@@ -26,7 +26,7 @@ public class ResourceController extends CommonController<TResource> {
         return resourceService;
     }
     @GetMapping("/selectResource")
-    public ResultData<TResource> selectResource(Long id){
+    public ResultData selectResource(Long id){
         List<TResource> tResources = resourceService.selectResource(id);
         if (tResources != null && tResources.size()>0){
             return super.operationSuccess(tResources);

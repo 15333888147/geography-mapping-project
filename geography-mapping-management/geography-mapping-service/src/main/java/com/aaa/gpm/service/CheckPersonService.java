@@ -5,6 +5,7 @@ import com.aaa.gpm.mapper.CheckPersonMapper;
 import com.aaa.gpm.model.TCheckPerson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +28,7 @@ public class CheckPersonService extends BaseService<TCheckPerson> {
      * Description:
      *      人员随机抽查
     */
-    public List<TCheckPerson> personRandom(HashMap hashMap){
+    public List<TCheckPerson> personRandom(@RequestBody HashMap hashMap){
         List<TCheckPerson> tCheckPeople = checkPersonMapper.personRandom(hashMap);
         if (null != tCheckPeople && tCheckPeople.size()>0){
             return tCheckPeople;

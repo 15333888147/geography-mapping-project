@@ -41,7 +41,7 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
      *      查询所有特殊岗位人员
     */
     @GetMapping("/selectAllSpecialPost")
-    public ResultData<TSpecialPost> selectAllSpecialPost(Integer pageNo,Integer pageSize){
+    public ResultData selectAllSpecialPost(Integer pageNo,Integer pageSize){
         PageInfo<TSpecialPost> pageInfo = specialPostService.selectListByPage(null, pageNo, pageSize);
         if (pageInfo != null && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -55,7 +55,7 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
      *       根据id查询特殊岗位人员
     */
     @GetMapping("/selectSpecialPostById")
-    public ResultData<Map> selectSpecialPostById(Long id){
+    public ResultData selectSpecialPostById(Long id){
         Map map = new HashMap();
         TSpecialPost tSpecialPost = new TSpecialPost();
         tSpecialPost.setId(id);
@@ -77,7 +77,7 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
      *      修改特殊岗位人员信息
      */
     @PostMapping("/updateSpecialPost")
-    public ResultData<TSpecialPost> updateSpecialPost(@RequestBody Map map){
+    public ResultData updateSpecialPost(@RequestBody Map map){
         return super.update(map);
     }
     /**@DateTime: 2020/7/20 10:25
@@ -87,7 +87,7 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
      *      增加特殊岗位人员信息
      */
     @PostMapping("/addSpecialPost")
-    public ResultData<TSpecialPost> addSpecialPost(@RequestBody Map map){
+    public ResultData addSpecialPost(@RequestBody Map map){
         return super.add(map);
     }
     /**@DateTime: 2020/7/20 10:26
@@ -97,7 +97,7 @@ public class TSpecialPostController extends CommonController<TSpecialPost> {
      *      删除特殊岗位人员信息
      */
     @PostMapping("/deleteSpecialPost")
-    public ResultData<TSpecialPost> deleteSpecialPost(@RequestBody Map map){
+    public ResultData deleteSpecialPost(@RequestBody Map map){
         return super.delete(map);
     }
 }

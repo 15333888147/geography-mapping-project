@@ -39,7 +39,7 @@ public class PrincipalController extends CommonController<TPrincipal> {
      *      分页查询所有负责人
     */
     @GetMapping("/selectAllTPrincipal")
-    public ResultData<TPrincipal> selectAllTPrincipal(Integer pageNo,Integer pageSize){
+    public ResultData selectAllTPrincipal(Integer pageNo,Integer pageSize){
         PageInfo<TPrincipal> pageInfo = principalService.selectListByPage(null, pageNo, pageSize);
         if (null != pageInfo && !"".equals(pageInfo)){
             return super.operationSuccess(pageInfo);
@@ -53,7 +53,7 @@ public class PrincipalController extends CommonController<TPrincipal> {
      *      根据id查询负责人表和资源表
     */
     @GetMapping("/selectPrincipalAndResource")
-    public ResultData<Map> selectPrincipalAndResource(Long id){
+    public ResultData selectPrincipalAndResource(Long id){
         Map map = new HashMap();
         TPrincipal tPrincipal = new TPrincipal();
         tPrincipal.setId(id);
